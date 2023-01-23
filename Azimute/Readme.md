@@ -17,7 +17,7 @@ Integrantes:
         1. Azimute
 
     - lideres sequência inicial:
-        - A primeira lista foi gerada de forma randomica através da aplicação web Https://www.random.org/lists/
+        - A primeira lista foi gerada de forma randômica através da aplicação web Https://www.random.org/lists/
         - Obtemos a seguinte lista na ordem:
             1. Danielle
             2. Glaucia
