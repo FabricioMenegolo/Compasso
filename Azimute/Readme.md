@@ -8,7 +8,7 @@ Integrantes:
     Alice Young Lu
     Danielle de Paula Oliveira
     Fabricio Martins Menegolo
-    Glaucia Reis Caldas
+    Glaucia Regina Machado Brito
     Luiz Ricardo Gonzaga Ribeiro
 
 -23JAN23-
