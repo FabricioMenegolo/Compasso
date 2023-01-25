@@ -49,5 +49,5 @@ Integrantes:
 
     Sprint 1 – Lider Danielle
 
-        Considerando feriado de aniversario da cidade de São Paulo os integrantes Danielle, Glaucia, Luiz Ricardo e Fabricio foram suspensos de suas atividades laborais neste dia por estarem vinculados ao escritorio da cidade de São Paulo pelo como alunos da UNIVESP.
+        Considerando feriado de aniversário da cidade de São Paulo os integrantes Danielle, Glaucia, Luiz Ricardo e Fabricio foram suspensos de suas atividades laborais neste dia por estarem vinculados ao escritorio da cidade de São Paulo pelo como alunos da UNIVESP.
         Pra tal a integrante Alice será a porta voz da equipe nesta data.
