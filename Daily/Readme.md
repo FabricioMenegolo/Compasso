@@ -11,7 +11,7 @@ Integrantes:
     Glaucia Regina Machado Brito
     Luiz Ricardo Gonzaga Ribeiro
 
--23JAN23-
+-23JAN23- Segunda
 
     - Sugestão de nomes:
         1. Azimute
@@ -25,9 +25,9 @@ Integrantes:
             4. Luiz Ricardo
             5. Fabricio
 
--24JAN23-
+-24JAN23- Terça
 
-    Daily
+    Daily - Geral
     Início: 14h04m
     Fim: 14h33m
 
@@ -41,13 +41,52 @@ Integrantes:
 
         Sendo assim a próxima Daily ele irá comunicar na reunião qual Squad deverá avançar na chamada a partir do horário estipulado e sem cotas de tempo para cada Squad.
 
--25JAN23-
+-25JAN23- Quarta
 
-    Daily
-    Início: 
-    Fim: 
+    Daily - Geral
+    Início: 13h27m
+    Fim: 14h25m
 
     Sprint 1 – Lider Danielle
 
         Considerando feriado de aniversário da cidade de São Paulo os integrantes Danielle, Glaucia, Luiz Ricardo e Fabricio foram suspensos de suas atividades laborais neste dia por estarem vinculados ao escritorio da cidade de São Paulo pelo como alunos da UNIVESP.
         Pra tal a integrante Alice será a porta voz da equipe nesta data.
+
+-26JAN23- Quinta
+
+    Daily - Squad
+    Início: 13h58m
+    Fim: 14h51 
+
+    Sprint 1 – Lider Danielle
+
+        Foi realizada a primeira daily por squad, foi aberta a palavra para duvidas, porem não foram apresentadas duvidas em relação ao material. 
+
+-27JAN23- Sexta
+
+    Daily - Geral
+    Início: 13h58m
+    Fim: 14h51 
+
+    Sprint 1 – Lider Danielle
+
+        Foi realizada a tribuição das atividades na plataforma Udemy.
+        passado a seguinte atividade
+            As atividades visam aplicar os conhecimentos que você adquiriu no decorrer da Sprint. Realize as tarefas na sequência proposta, registrando via texto/imagens os resultados obtidos a cada etapa.
+                Perguntas dessa tarefa
+                    1. Criar uma conta privada no GitHub e conceder acesso ao seu instrutor da Sprint.
+                    2. Criar repositório (privado) para armazenar anotações e códigos criados ao longo do Programa de Bolsas.
+                    3. Escolher um software editor de código de sua preferência e integrar com ao GitHub. Alguns exemplos são VSCode, Atom e Sublime.
+                    4. Criar arquivo Markdown chamado README.md e adicionar ao seu repositório. Em seu conteúdo, descrever o que estiver aprendendo, de maneira estruturada, utilizando o editor escolhido no passo anterior.
+                        A estrutura do documento é livre. Cada aluno poderá construí-lo à sua maneira. Seja criativo, busque exemplos e/ou se inspire em outros projetos.
+                    5. Realizar as operações de commit e push para o GitHub das estruturas de pastas e arquivos criados nos exercícios anteriores.
+
+-30JAN23- Segunda
+
+    Daily - Geral
+    Início: 
+    Fim:  
+
+    Sprint 1 – Lider Danielle
+
+        Aguarde
