@@ -50,6 +50,15 @@
 - Renomeando ou mover arquivos
     git mv nomeArquivo.ext pasta/destino/nomeArquivo.ext
         - é possivel renomear o arquivo também
+            git mv pasta/destino/nomeArquivo.ext pasta/destino/nome_novo.ext
 
 - Desfazendo alterações
-    -git checkout
+    -git checkout pasta/destino/nomeArquivo.ext
+
+- Ignorando arquivos no projeto
+    - cria um arquivo
+        .gitignore
+        - inserir nome do arquivo a ser ignorado
+
+- Desfazendo todas as alterações
+    git reset --hard
