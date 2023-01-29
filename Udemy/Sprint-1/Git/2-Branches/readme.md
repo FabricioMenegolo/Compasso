@@ -34,12 +34,13 @@ Facilita manutenção e diagnostico de erro ao código
 - Stash
     git stash
     - prosseguir com outra abordagem de solução sem perder o código
-        - uma forma de recomeçar sem perder o codigo (podendo recupera lo depois).
+        - uma forma de recomeçar sem perder o codigo (podendo recupera lo depois)
             - tipo é jogado na lixeira
-        - resetado para versão conforme repo (perde os commits tambem)
-
-
+            - se houve commit não é possível usar stash
+             
 - Recuperando stash
+    git stash list
+    git stash <nome>
 
 - Removendo a stash
 
