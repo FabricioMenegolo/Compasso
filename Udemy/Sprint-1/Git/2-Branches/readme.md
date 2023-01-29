@@ -39,13 +39,22 @@ Facilita manutenção e diagnostico de erro ao código
             - se houve commit não é possível usar stash
              
 - Recuperando stash
-    git stash list
-    git stash <nome>
-
+    - lista de stash savas
+            git stash list
+    - mostra as modificações da referida stash
+        git stash show -p <nº>
+    - aplica uma stash novamente ao branch    
+            git stash apply <nº>
+    
 - Removendo a stash
+    - Remove todas
+        git stash clear
+    - especifica
+        git stash drop <nº>
 
 - Utilizando tags
-
+    um checkpoint no desenvolvimento
+        git tag -a <nome> -m "msg"
 - Verificando e alterando tags
 
 - Enviando e compartilhando tags
