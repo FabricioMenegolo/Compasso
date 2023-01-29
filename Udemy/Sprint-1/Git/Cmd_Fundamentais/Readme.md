@@ -58,7 +58,13 @@
 - Ignorando arquivos no projeto
     - cria um arquivo
         .gitignore
-        - inserir nome do arquivo a ser ignorado
+        - inserir nome do arquivo ou pasta a ser ignorado
+            - para pastas
+                nomeDaPasta/*
 
 - Desfazendo todas as alterações
-    git reset --hard
+    git reset --hard origin/main
+    - Flag --hard
+        remove todas as mudanças e retorna ao estado inicial
+    - origin/main
+        qual vai ser sua referência
