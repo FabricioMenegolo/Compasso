@@ -55,6 +55,10 @@ Facilita manutenção e diagnostico de erro ao código
 - Utilizando tags
     um checkpoint no desenvolvimento
         git tag -a <nome> -m "msg"
-- Verificando e alterando tags
+
+- Verificando e alterando 
+    git show <nome>
+    - podemos trocar de tags com
+        git checkout <nome>
 
 - Enviando e compartilhando tags
