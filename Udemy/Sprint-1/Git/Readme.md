@@ -42,6 +42,14 @@
 
 - Histórico de alterações
     git log
+    - sair
+        Ctrl + C; ou
+        Ctrl + Q
 
-- Renomeando arquivos
-    git mv
+
+- Renomeando ou mover arquivos
+    git mv nomeArquivo.ext pasta/destino/nomeArquivo.ext
+        - é possivel renomear o arquivo também
+
+- Desfazendo alterações
+    -git checkout
