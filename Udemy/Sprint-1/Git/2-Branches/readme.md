@@ -29,8 +29,15 @@ Facilita manutenção e diagnostico de erro ao código
     git merge <nome>
         - a branche atual vai se unir ao <nome> de destino
     * Nunca de o merge nosso com a master, ela não deve ser alterada diretamente pelo git.
+        salvo projeto particular.
 
 - Stash
+    git stash
+    - prosseguir com outra abordagem de solução sem perder o código
+        - uma forma de recomeçar sem perder o codigo (podendo recupera lo depois).
+            - tipo é jogado na lixeira
+        - resetado para versão conforme repo (perde os commits tambem)
+
 
 - Recuperando stash
 
