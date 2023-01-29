@@ -62,3 +62,6 @@ Facilita manutenção e diagnostico de erro ao código
         git checkout <nome>
 
 - Enviando e compartilhando tags
+    git push origin <nome>
+    - quiser enviar as demais tags
+        git push origin --tags
