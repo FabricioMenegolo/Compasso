@@ -1,3 +1,5 @@
+COMANDOS FUNDAMENTAIS
+
 - criando repositório
     git init
 
