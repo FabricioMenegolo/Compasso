@@ -28,6 +28,7 @@ Facilita manutenção e diagnostico de erro ao código
 - Unindo branches
     git merge <nome>
         - a branche atual vai se unir ao <nome> de destino
+    * Nunca de o merge nosso com a master, ela não deve ser alterada diretamente pelo git.
 
 - Stash
 
