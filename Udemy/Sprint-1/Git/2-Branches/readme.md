@@ -22,8 +22,12 @@ Facilita manutenção e diagnostico de erro ao código
         git checkout -b <nome_da_branch>
     - também é usado para dispensar mudanças de um arquivo
         git checkout <nome_do_arquivo>
+    - ideal e gerar uma brant sempre da main
+        lembrar de fazer pull ou comitar antes de criar branch, pois pode levar as modificações para branch nova
 
 - Unindo branches
+    git merge <nome>
+        - a branche atual vai se unir ao <nome> de destino
 
 - Stash
 
