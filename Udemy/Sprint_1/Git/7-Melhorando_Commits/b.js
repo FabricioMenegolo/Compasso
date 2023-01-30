@@ -10,7 +10,7 @@ console.log("falta arquivo da funcao")
 
 console.log("terminamos")
 
-function addCart(p {
-    cart = {}
-    return cart
-})
+function addCart(p) {
+    cart = {};
+    return cart;
+};
