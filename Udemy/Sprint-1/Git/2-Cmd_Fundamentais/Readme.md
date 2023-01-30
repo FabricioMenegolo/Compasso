@@ -44,7 +44,8 @@
     git log
     - sair
         Ctrl + C; ou
-        Ctrl + Q
+        Ctrl + Q; ou
+        :q
 
 
 - Renomeando ou mover arquivos
