@@ -1,7 +1,11 @@
 ADMINISTRAÇÃO DO REPOSITÓRIO
 
 - Limpando arquivos untracked
+    para arquivos que são gerados automaticamente
+        Ou todos que você não utilizou git add
     git clean
+        flag -f
+            forçar ação
 
 - Otimizando o repositório
     git gc
