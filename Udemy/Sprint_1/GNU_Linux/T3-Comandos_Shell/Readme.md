@@ -69,5 +69,67 @@ segundo comando também será executado
     Operador “||” (OR), caso o primeiro comando não execute com sucesso (código de retorno ≠ 0), o segundo comando será executado. RESUMINDO, quando um dos comandos for executado com sucesso, os comandos seguintes não são verificados
 
 Filtros de conteúdo
+    interceptar e filtrar conteúdo que iriam para stdout
+    - $ greep <opções> [string_ou_regex] [arquivo_ou_caminho]
+        - processa conteudo linha a linha e exibe as que possuir string especifica
+        flag -v
+            executa o inverso, ou seja as linhas que nao possuir string especificada
+        flag -r 
+            executa de forma recursiva, ou seja enta em cada arquid de cada diretório e subdiretório
+        falg -i
+            ignora o case-sensitive
+    - $ dmesg
+        visualizar o hardware carregado na inicialização
+    - $ egreep
+        permite uso de uma expresão regular (REGEX) para buscas mais elaboradas
+    - $ wc
+        contador de palavras (word count)
+            apresenta linhas, palavras e caracteres
+    - $ cut
+        realiza recortes em conteúdo
+            flag -d
+                delimitador 
+            flag -f
+                campo que deseja visualizar (Field)
+            flag --output-delimiter="<string_REGEX>"
+                adiciona uma string no entre delimitador
+    - $ tr "<string_REGEX>"
+        traduz um sinal ou caracterer por outro
+        flag -d deleta a string da saída
+    - $ sort
+        ordena em ordem alfabetica
+    - $ uniq
+        exibe penas uma ocorrencia no caso houver strings repetidas
+    - $ nl
+        enumera as saidas decada linha
+    
+    - $ awk -F, '{<condição>}' <nome_arquivo>
+            -flag F
+                indica que realizara um filto
+        tambem funciona como limitador e aceita concatenação de stings e quebra de linhas na condição
+    - $ sed 's/<expressão>t/<outra>/g'
+        substitui uma expressão de saida por outra
+            - /g atua em todas a expressões existentes
+    - $ diff <arquivo_x> <arquivo_y>
+        comparador de arquivos e verifica a diferença entre eles
+
+Meta caracter
+    - "^" => inicio de uma linha 
+
 
 Empacotadores e Compactadores
+
+    usado tambem em rotinas de backup
+
+    - $ zip <opções> [caminho_do_arquivo] [arquivos_a_ser_compactados]
+        compacta arquivos
+        flag -r 
+            atua de forma recursiva, a fim de inserir pastas e subpastas
+    
+    - $ unzip <arquivo>.zip
+        descompacta arquivo zip
+            flag -d <diretorio_destino>
+                determina o destino onde será descompactado
+    - $ tar <opções> [arquivo] <opções||caminho_a_ser_compactado>
+        pode empacotar sem realizar compressão 
+        utiliza padrão "gzip",bzip" e "compress" de empacotamento
