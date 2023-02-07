@@ -14,16 +14,19 @@ Integrantes:
 -23JAN23- Segunda
 
     - Sugestão de nomes:
-        1. Azimute
+        1. Azimute (em inglês: Azimuth)
+            - Assim como a Compass® nos traz o norte, viemos nos juntar e calcular, com o suporte de nosso mentores, um ângulo entre o amor e nossos talentos a fim de traçar a linha de fé a ser percorrida, e que ao chegar ao fim deste caminho estipulado possamos descobrir algo novo que impacte de forma positiva a vida de cada um aqui bem como das pessoas ao nosso redor.
 
-    - lideres sequência inicial:
-        - A primeira lista foi gerada de forma randômica através da aplicação web Https://www.random.org/lists/
+    - Líderes sequência inicial:
+        - A primeira lista foi gerada de forma randômica através da aplicação web https://www.random.org/lists/
         - Obtemos a seguinte lista na ordem:
             1. Danielle
             2. Glaucia
             3. Alice
             4. Luiz Ricardo
             5. Fabricio
+        - Sendo que no caso de ausência ou impossibilidade de assumir a liderança o próximo será o suplente e assim sucessivamente.
+        - Em caso de impossibilidade de assunção, aquele que deixou de assumir tomará posse na sprint subsequente.    
 
 -24JAN23- Terça
 
