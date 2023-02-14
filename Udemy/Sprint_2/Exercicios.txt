@@ -27,7 +27,7 @@ Ordenar as linhas pela coluna que representa a quantidade de livros em ordem dec
   FROM editora join endereco on editora.endereco = codendereco) as test on livro.editora = codeditora
   GROUP by editora
   order by quantidade DESC
-  LIMIT 5
+  LIMIT 5;
 
 
 /*(X)4. Apresente a query para listar a quantidade de livros publicada por cada autor.
@@ -55,4 +55,22 @@ em ordem crescente.*/
     join (SELECT * FROM livro join autor on livro.autor = codautor) as livro_autor
       on end_editora.codeditora = editora
   WHERE estado != 'PARANÁ' AND estado != 'RIO GRANDE DO SUL' AND estado != 'SANTA CATARINA'
+  ORDER by nome;
+
+/* 6. Apresente a query para listar o autor com maior número de livros publicados.
+O resultado deve conter apenas as colunas codautor, nome, quantidade_publicacoes.*/
+
+  SELECT codautor, nome, count (*) as quantidade_publicacoes
+  FROM livro JOIN autor on livro.autor = codautor
+  GROUP by nome
+  ORDER by quantidade_publicacoes DESC
+  LIMIT 1;
+  
+  
+/* 7. Apresente a query para listar o nome dos autores com nenhuma publicação.
+Apresentá-los em ordem crescente.*/
+
+  SELECT nome
+  from autor left outer JOIN livro on autor.codautor = autor
+  WHERE titulo is NULL
   ORDER by nome
