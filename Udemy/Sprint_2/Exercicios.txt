@@ -1,0 +1,58 @@
+/* 1. Apresente a query para listar todos os livros publicados após 2014. Ordenar pela coluna cod, 
+em ordem crescente, as linhas.  Atenção às colunas esperadas no resultado final: cod, titulo, 
+autor, editora, valor, publicacao, edicao, idioma */
+
+  SELECT cod, titulo, autor, editora, valor, publicacao, edicao, idioma
+  from livro
+  WHERE publicacao > '2014-12-31'
+  ORDER by cod;
+
+
+/* 2. Apresente a query para listar os 10 livros mais caros. 
+Ordenar as linhas pela coluna valor, em ordem decrescente.
+Atenção às colunas esperadas no resultado final:  titulo, valor.*/
+
+  SELECT titulo, valor
+  FROM livro
+  ORDER by valor DESC
+  LIMIT 10;
+
+
+/* 3. Apresente a query para listar as 5 editoras com mais livros na biblioteca. 
+O resultado deve conter apenas as colunas quantidade, nome, estado e cidade. 
+Ordenar as linhas pela coluna que representa a quantidade de livros em ordem decrescente.*/
+
+  SELECT count(*) AS quantidade, nome, estado,cidade
+  FROM livro JOIN (SELECT *
+  FROM editora join endereco on editora.endereco = codendereco) as test on livro.editora = codeditora
+  GROUP by editora
+  order by quantidade DESC
+  LIMIT 5
+
+
+/*(X)4. Apresente a query para listar a quantidade de livros publicada por cada autor.
+Ordenar as linhas pela coluna nome (autor), em ordem crescente.
+Além desta, apresentar as colunas codautor, nascimento e 
+quantidade (total de livros de sua autoria).*/
+
+  SELECT nome, codautor, nascimento, count (*) as quantidade
+  FROM livro join autor on livro.autor = codautor
+  GROUP by autor
+  ORDER by nome;
+
+  SELECT nome, codautor, nascimento, count (*) as quantidade
+  FROM livro JOIN autor on livro.autor = codautor
+  GROUP by nome, codautor, nascimento
+  ORDER by nome ASC;
+
+
+/* 5. Apresente a query para listar o nome dos autores que publicaram livros através de 
+editoras NÃO situadas na região sul do Brasil. Ordene o resultado pela coluna nome, 
+em ordem crescente.*/
+
+  SELECT nome
+  FROM (SELECT codeditora, estado FROM editora join endereco on editora.endereco = codendereco) as end_editora 
+    join (SELECT * FROM livro join autor on livro.autor = codautor) as livro_autor
+      on end_editora.codeditora = editora
+  WHERE estado != 'PARANÁ' AND estado != 'RIO GRANDE DO SUL' AND estado != 'SANTA CATARINA'
+  ORDER by nome
