@@ -35,15 +35,11 @@ Ordenar as linhas pela coluna nome (autor), em ordem crescente.
 Além desta, apresentar as colunas codautor, nascimento e 
 quantidade (total de livros de sua autoria).*/
 
-  SELECT nome, codautor, nascimento, count (*) as quantidade
-  FROM livro join autor on livro.autor = codautor
-  GROUP by autor
-  ORDER by nome;
-
-  SELECT nome, codautor, nascimento, count (*) as quantidade
-  FROM livro JOIN autor on livro.autor = codautor
-  GROUP by nome, codautor, nascimento
-  ORDER by nome ASC;
+  SELECT nome, codautor, nascimento, count (autor) as quantidade
+  FROM autor LEFT JOIN livro on autor.codautor = autor
+  GROUP BY nome
+  ORDER BY nome;
+  
 
 
 /* 5. Apresente a query para listar o nome dos autores que publicaram livros através de 
