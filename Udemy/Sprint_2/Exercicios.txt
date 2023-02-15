@@ -1,6 +1,9 @@
-/* 1. Apresente a query para listar todos os livros publicados após 2014. Ordenar pela coluna cod, 
+/*
+1. 
+Apresente a query para listar todos os livros publicados após 2014. Ordenar pela coluna cod, 
 em ordem crescente, as linhas.  Atenção às colunas esperadas no resultado final: cod, titulo, 
-autor, editora, valor, publicacao, edicao, idioma */
+autor, editora, valor, publicacao, edicao, idioma
+*/
 
   SELECT cod, titulo, autor, editora, valor, publicacao, edicao, idioma
   from livro
@@ -8,9 +11,12 @@ autor, editora, valor, publicacao, edicao, idioma */
   ORDER by cod;
 
 
-/* 2. Apresente a query para listar os 10 livros mais caros. 
+/*
+2.
+Apresente a query para listar os 10 livros mais caros. 
 Ordenar as linhas pela coluna valor, em ordem decrescente.
-Atenção às colunas esperadas no resultado final:  titulo, valor.*/
+Atenção às colunas esperadas no resultado final:  titulo, valor.
+*/
 
   SELECT titulo, valor
   FROM livro
@@ -18,9 +24,12 @@ Atenção às colunas esperadas no resultado final:  titulo, valor.*/
   LIMIT 10;
 
 
-/* 3. Apresente a query para listar as 5 editoras com mais livros na biblioteca. 
+/* 
+3.
+Apresente a query para listar as 5 editoras com mais livros na biblioteca. 
 O resultado deve conter apenas as colunas quantidade, nome, estado e cidade. 
-Ordenar as linhas pela coluna que representa a quantidade de livros em ordem decrescente.*/
+Ordenar as linhas pela coluna que representa a quantidade de livros em ordem decrescente.
+*/
 
   SELECT count(*) AS quantidade, nome, estado,cidade
   FROM livro JOIN (SELECT *
@@ -30,10 +39,13 @@ Ordenar as linhas pela coluna que representa a quantidade de livros em ordem dec
   LIMIT 5;
 
 
-/*(X)4. Apresente a query para listar a quantidade de livros publicada por cada autor.
+/* 
+4. 
+Apresente a query para listar a quantidade de livros publicada por cada autor.
 Ordenar as linhas pela coluna nome (autor), em ordem crescente.
 Além desta, apresentar as colunas codautor, nascimento e 
-quantidade (total de livros de sua autoria).*/
+quantidade (total de livros de sua autoria).
+*/
 
   SELECT nome, codautor, nascimento, count (autor) as quantidade
   FROM autor LEFT JOIN livro on autor.codautor = autor
@@ -42,9 +54,12 @@ quantidade (total de livros de sua autoria).*/
   
 
 
-/* 5. Apresente a query para listar o nome dos autores que publicaram livros através de 
+/*
+5.
+Apresente a query para listar o nome dos autores que publicaram livros através de 
 editoras NÃO situadas na região sul do Brasil. Ordene o resultado pela coluna nome, 
-em ordem crescente.*/
+em ordem crescente.
+*/
 
   SELECT nome
   FROM (SELECT codeditora, estado FROM editora join endereco on editora.endereco = codendereco) as end_editora 
@@ -53,8 +68,11 @@ em ordem crescente.*/
   WHERE estado != 'PARANÁ' AND estado != 'RIO GRANDE DO SUL' AND estado != 'SANTA CATARINA'
   ORDER by nome;
 
-/* 6. Apresente a query para listar o autor com maior número de livros publicados.
-O resultado deve conter apenas as colunas codautor, nome, quantidade_publicacoes.*/
+/*
+6.
+Apresente a query para listar o autor com maior número de livros publicados.
+O resultado deve conter apenas as colunas codautor, nome, quantidade_publicacoes.
+*/
 
   SELECT codautor, nome, count (*) as quantidade_publicacoes
   FROM livro JOIN autor on livro.autor = codautor
@@ -63,10 +81,139 @@ O resultado deve conter apenas as colunas codautor, nome, quantidade_publicacoes
   LIMIT 1;
   
   
-/* 7. Apresente a query para listar o nome dos autores com nenhuma publicação.
-Apresentá-los em ordem crescente.*/
+/*
+7.
+Apresente a query para listar o nome dos autores com nenhuma publicação.
+Apresentá-los em ordem crescente.
+*/
 
   SELECT nome
   from autor left outer JOIN livro on autor.codautor = autor
   WHERE titulo is NULL
   ORDER by nome
+
+
+/* 
+8.
+Apresente a query para listar o código e o nome do vendedor com maior número de vendas (contagem),
+e que estas vendas estejam com o status concluída.  As colunas presentes no resultado devem ser,
+portanto, cdvdd e nmvdd.
+*/
+
+  SELECT cdvdd, nmvdd
+  From tbvendedor 
+    RIGHT JOIN(
+      SELECT cdvdd AS cod_vend, status, COUNT(cdvdd) as qtd_vendas
+      FROM tbvendas
+      WHERE status = 'Concluído'
+      GROUP by cdvdd
+    ) as vendas_concluidas
+    on tbvendedor.cdvdd = cod_vend
+  ORDER BY qtd_vendas DESC
+  LIMIT 1;
+
+/* 
+9.
+Apresente a query para listar o código e nome do produto mais vendido entre as datas de
+2014-02-03 até 2018-02-02, e que estas vendas estejam com o status concluída.
+As colunas presentes no resultado devem ser cdpro e nmpro.
+*/
+
+  SELECT cdpro, nmpro
+  FROM (
+    SELECT  cdpro, nmpro, COUNT(nmpro) as qtd_prod
+    FROM tbvendas
+    WHERE cast (dtven AS date) BETWEEN 2014-02-03 AND 2018-02-02
+    GROUP by nmpro
+      LIMIT 1
+    );
+
+ 
+/* 
+10.
+A comissão de um vendedor é definida a partir de um percentual sobre o total de vendas
+(quantidade * valor unitário) por ele realizado. 
+O percentual de comissão de cada vendedor está armazenado na coluna perccomissao,
+tabela tbvendedor. 
+
+Com base em tais informações, calcule a comissão de todos os vendedores,
+considerando todas as vendas armazenadas na base de dados com status concluído.
+
+As colunas presentes no resultado devem ser vendedor, valor_total_vendas e comissao.
+O valor de comissão deve ser apresentado em ordem decrescente arredondado 
+na segunda casa decimal.
+*/
+
+-- para comissao multiplico os valores e divido por 100
+SELECT nmvdd as vendedor, valor_total_vendas, ROUND(((perccomissao * valor_total_vendas) / 100), 2) as comissao
+FROM tbvendedor
+	RIGHT JOIN (
+		-- soma de todos os produtos vendidos por vendedor
+		SELECT cdvdd as cod_vend, sum(valor_total) as valor_total_vendas
+		FROM (
+  			-- query com coluna do preco final de cada produto vendido
+			SELECT cdvdd, (qtd * vrunt) as valor_total
+			FROM tbvendas
+			WHERE status = 'Concluído'
+		)  
+		GROUP by cod_vend
+	) As vendas_vendedor
+    on tbvendedor.cdvdd = cod_vend
+ORDER by comissao DESC
+
+
+-- simplificado:
+SELECT nmvdd as vendedor, valor_total_vendas, ROUND(((perccomissao * valor_total_vendas) / 100), 2) as comissao
+FROM tbvendedor
+	RIGHT JOIN (
+		-- soma de todos os produtos vendidos por vendedor
+		SELECT cdvdd as cod_vend, sum(qtd * vrunt) as valor_total_vendas
+		FROM tbvendas
+		WHERE status = 'Concluído'
+		GROUP by cod_vend
+	) AS vendas_vendedor
+    on tbvendedor.cdvdd = cod_vend
+ORDER by comissao DESC
+
+
+/*
+11. 
+Apresente a query para listar o código e nome cliente com maior gasto na loja.
+As colunas presentes no resultado devem ser cdcli, nmcli e gasto, 
+esta última representando o somatório das vendas (concluídas) atribuídas ao cliente.
+*/
+
+  -- soma os valores gasto por cliente e ordenado de forma decrescente e resultado limitado a 1
+  SELECT cdcli, nmcli, sum(valor_total_produto) as gasto
+  from (
+    -- soma dos valores de cada produto
+    SELECT cdcli, nmcli, (qtd * vrunt) as valor_total_produto
+    FROM tbvendas
+    WHERE status = 'Concluído'
+  )
+  GROUP BY cdcli
+  ORDER by gasto DESC
+  LIMIT 1;
+
+
+/*
+12. 
+Apresente a query para listar código, nome e data de nascimento dos dependentes do vendedor
+com menor valor total bruto em vendas (não sendo zero). 
+As colunas presentes no resultado devem ser cddep, nmdep, dtnasc e valor_total_vendas.
+
+Observação: Apenas vendas com status concluído.
+*/
+
+  SELECT cddep, nmdep, dtnasc, valor_total_vendas
+  FROM tbdependente
+    LEFT JOIN (
+        SELECT cdvdd as cod_vend, sum(qtd * vrunt) as valor_total_vendas
+        FROM tbvendas
+        WHERE status = 'Concluído'
+        GROUP by cod_vend
+        ORDER by valor_total_vendas
+    )
+      on tbdependente.cdvdd = cod_vend
+  ORDER by valor_total_vendas
+  LIMIT 1;
