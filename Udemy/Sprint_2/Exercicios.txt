@@ -217,3 +217,65 @@ Observação: Apenas vendas com status concluído.
       on tbdependente.cdvdd = cod_vend
   ORDER by valor_total_vendas
   LIMIT 1;
+  
+  
+/*
+13.
+Apresente a query para listar os 10 produtos menos vendidos pelos canais de
+E-Commerce ou Matriz (Considerar apenas vendas concluídas).
+As colunas presentes no resultado devem ser cdpro, nmcanalvendas, nmpro e quantidade_vendas.
+*/
+
+
+	SELECT cdpro, nmcanalvendas, nmpro, sum(qtd) AS quantidade_vendas
+	FROM tbvendas
+	WHERE status = 'Concluído'AND (nmcanalvendas = 'Ecommerce' OR nmcanalvendas = 'Matriz')
+	group by nmpro, nmcanalvendas
+	ORDER by quantidade_vendas
+
+/*
+14.
+Apresente a query para listar o gasto médio por estado da federação. 
+As colunas presentes no resultado devem ser estado e gastomedio.
+Considere apresentar a coluna gastomedio arredondada na segunda casa decimal e
+ordenado de forma decrescente.
+
+Observação: Apenas vendas com status concluído.
+*/
+
+	SELECT estado, ROUND(AVG(qtd * vrunt),2) as gastomedio
+	FROM tbvendas
+	WHERE status = 'Concluído'
+	GROUP by estado
+	ORDER BY gastomedio DESC
+
+
+/*
+15.
+Apresente a query para listar os códigos das vendas identificadas como deletadas.
+Apresente o resultado em ordem crescente.
+*/
+
+	SELECT cdven
+	FROM tbvendas
+	WHERE deletado = '1'
+	ORDER by cdven
+
+
+/*
+16.
+Apresente a query para listar a quantidade média vendida de cada produto agrupado por
+estado da federação. As colunas presentes no resultado devem ser
+estado e nmprod e quantidade_media. 
+Considere arredondar o valor da coluna quantidade_media na quarta casa decimal. 
+Ordene os resultados pelo estado (1º) e nome do produto (2º).
+
+Obs: Somente vendas concluídas.
+*/
+
+
+	SELECT estado, nmpro, ROUND(AVG(qtd),4) as quantidade_media
+	FROM tbvendas
+	WHERE status = 'Concluído'
+	GROUP by nmpro, estado
+	ORDER BY estado, nmpro
