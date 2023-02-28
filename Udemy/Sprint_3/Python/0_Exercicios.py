@@ -52,3 +52,22 @@ for i in range(2,101):
 
 dia, mes, ano = 22, 10, 2022
 print(f'{dia}/{mes}/{ano}')
+
+
+#
+#6.
+#Dada duas listas como as no exemplo abaixo:
+"""""
+a = [1, 1, 2, 3, 5, 8, 14, 21, 34, 55, 89]
+b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+Escreva um programa que retorne o que ambas as listas têm em comum (sem repetições).
+O seu programa deve funcionar para listas de qualquer tamanho.
+"""
+
+#
+#7.
+# Dada a seguinte lista:
+# a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+#Faça um programa que gere uma nova lista contendo apenas números ímpares.
+
