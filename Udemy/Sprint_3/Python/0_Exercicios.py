@@ -11,6 +11,7 @@ def ano_faz_cem ():
 
 print(ano_faz_cem())
 
+
 # 2.
 #Escreva um código Python que verifique se três números digitados pelo usuário são pares ou ímpares.
 # Para cada número, imprima o Par: ou Ímpar: e o número correspondente.
@@ -18,15 +19,15 @@ print(ano_faz_cem())
 for i in range(1,4):
     numero = int(input('Escreva um numero: '))
     if (numero % 2) == 0:
-        print(f' {numero} é par')
+        print(f' Par: {numero}')
     else:
-        print(f' {numero} é impar')
+        print(f' Ímpar: {numero}')
 
 # 3.
 #Escreva um código Python que imprime os números pares de 0 até 20 (incluso).
 # Dica: Utilize a função range().
 
-for i in range(1,21):
+for i in range(0,21):
     if (i % 2) == 1:
         continue
     print(i)
@@ -57,10 +58,10 @@ print(f'{dia}/{mes}/{ano}')
 #
 #6.
 #Dada duas listas como as no exemplo abaixo:
-"""""
+
 a = [1, 1, 2, 3, 5, 8, 14, 21, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-
+"""
 Escreva um programa que retorne o que ambas as listas têm em comum (sem repetições).
 O seu programa deve funcionar para listas de qualquer tamanho.
 """
@@ -68,6 +69,34 @@ O seu programa deve funcionar para listas de qualquer tamanho.
 #
 #7.
 # Dada a seguinte lista:
-# a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 #Faça um programa que gere uma nova lista contendo apenas números ímpares.
+def somente_pares(array):
+    nova_lista=[]
+    for i in range(len(array)):
+        if (array[i] % 2) != 0:
+            nova_lista.append(array[i])
+    return nova_lista
 
+print(somente_pares(a))
+
+
+#8.
+#Verifique se cada uma das palavras da lista ['maça', 'arara', 'audio', 'radio', 'radar', 'moto']
+# é ou não um palíndromo.
+# Obs: Palíndromo é uma palavra que permanece igual se lida de traz pra frente.
+
+def palindromo(string, ini, fim):
+    if ini == fim:
+        sim_palindromo = "A palavra: " + string + " é um palíndromo"
+        return sim_palindromo
+    elif string[ini] == string[fim]:
+        return palindromo(string, ini +1, fim-1)
+    else:
+        nao_palindromo = "A palavra: " + string + " não é um palíndromo"
+        return nao_palindromo
+
+list = ['maça', 'arara', 'audio', 'radio', 'radar', 'moto']
+
+for i in range(len(list)):
+  print(palindromo(list[i], 0, len(list[i])-1))
