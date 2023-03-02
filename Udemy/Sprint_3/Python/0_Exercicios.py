@@ -66,6 +66,18 @@ Escreva um programa que retorne o que ambas as listas têm em comum (sem repeti�
 O seu programa deve funcionar para listas de qualquer tamanho.
 """
 
+def inner_join(list_a, list_b):
+    lista_a = set(list_a)
+    lista_b = set(list_b)
+    nova_lista = []
+    for i in lista_a:
+        if (i in lista_b):
+            nova_lista.append(i)
+    
+    return nova_lista
+
+print(inner_join(a,b))
+
 #
 #7.
 # Dada a seguinte lista:
@@ -86,17 +98,51 @@ print(somente_pares(a))
 # é ou não um palíndromo.
 # Obs: Palíndromo é uma palavra que permanece igual se lida de traz pra frente.
 
-def palindromo(string, ini, fim):
+def palindromo(string, ini=0, fim=None):
+    if fim is None:
+        fim = len(string)-1
     if ini == fim:
-        sim_palindromo = "A palavra: " + string + " é um palíndromo"
-        return sim_palindromo
+        print("A palavra: " + string + " é um palíndromo")        
     elif string[ini] == string[fim]:
         return palindromo(string, ini +1, fim-1)
     else:
-        nao_palindromo = "A palavra: " + string + " não é um palíndromo"
-        return nao_palindromo
-
+        print("A palavra: " + string + " não é um palíndromo")
+        
 list = ['maça', 'arara', 'audio', 'radio', 'radar', 'moto']
 
 for i in range(len(list)):
-  print(palindromo(list[i], 0, len(list[i])-1))
+  palindromo(list[i])
+
+"""
+vou resumir pois como o curso começa com funções, acabei fazendo o codigo como uma função 
+na verdade eu particulamente retornaria um boleano ao invés de um print na função acima para poder
+ter a possibilidade de reutilização em outros treços de codigos tornando-o mais versátil
+"""
+
+list = ['maça', 'arara', 'audio', 'radio', 'radar', 'moto']
+for string in list:
+    if string == i[::-1]:
+        print("A palavra: " + string + " é um palíndromo")
+    else:
+        print("A palavra: " + string + " não é um palíndromo")
+
+
+ #
+ # 9
+ # Dada as listas a seguir:
+
+primeirosNomes = ['Joao', 'Douglas', 'Lucas', 'José']
+sobreNomes = ['Soares', 'Souza', 'Silveira', 'Pedreira']
+idades = [19, 28, 25, 31]
+
+#Faça um programa que imprima o dados na seguinte estrutura: 
+# "índice - primeiroNome sobreNome está com idade anos".
+
+#Exemplo:
+#0 - João Soares está com 19 anos 
+
+# Você deve Utilizar a função enumerate().
+
+for i, primeirosNomes in enumerate(primeirosNomes):
+    pessoa = f"{i} - {primeirosNomes} {sobreNomes[i]} está com {idades[i]} anos"
+    print(pessoa)
