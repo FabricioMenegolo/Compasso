@@ -146,3 +146,18 @@ idades = [19, 28, 25, 31]
 for i, primeirosNomes in enumerate(primeirosNomes):
     pessoa = f"{i} - {primeirosNomes} {sobreNomes[i]} está com {idades[i]} anos"
     print(pessoa)
+
+
+#Escreva uma função que recebe uma lista e retorna uma nova lista sem elementos duplicados. 
+# Utilize a lista a seguir para testar sua função.
+exercicio_10 = ['abc', 'abc', 'abc', '123', 'abc', '123', '123']
+
+def distinct(lista):
+    lista_distinta = []
+    lista = set(lista)
+    for i in lista:
+        lista_distinta.append(i)
+    
+    return lista_distinta
+    
+print(distinct(exercicio_10))
