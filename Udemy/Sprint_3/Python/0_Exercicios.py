@@ -114,7 +114,7 @@ for i in range(len(list)):
   palindromo(list[i])
 
 """
-vou resumir pois como o curso começa com funções, acabei fazendo o codigo como uma função 
+vou resumir, pois como o curso começa com funções, acabei fazendo o codigo como uma função 
 na verdade eu particulamente retornaria um boleano ao invés de um print na função acima para poder
 ter a possibilidade de reutilização em outros treços de codigos tornando-o mais versátil
 """
@@ -134,7 +134,7 @@ for string in list:
 primeirosNomes = ['Joao', 'Douglas', 'Lucas', 'José']
 sobreNomes = ['Soares', 'Souza', 'Silveira', 'Pedreira']
 idades = [19, 28, 25, 31]
-
+"""""
 #Faça um programa que imprima o dados na seguinte estrutura: 
 # "índice - primeiroNome sobreNome está com idade anos".
 
@@ -142,12 +142,13 @@ idades = [19, 28, 25, 31]
 #0 - João Soares está com 19 anos 
 
 # Você deve Utilizar a função enumerate().
-
+"""
 for i, primeirosNomes in enumerate(primeirosNomes):
     pessoa = f"{i} - {primeirosNomes} {sobreNomes[i]} está com {idades[i]} anos"
     print(pessoa)
 
-
+#
+#10
 #Escreva uma função que recebe uma lista e retorna uma nova lista sem elementos duplicados. 
 # Utilize a lista a seguir para testar sua função.
 exercicio_10 = ['abc', 'abc', 'abc', '123', 'abc', '123', '123']
