@@ -241,27 +241,32 @@ Imprima: A lâmpada ainda está ligada? False
 """
 class Lampada:
     def __init__(self, ligada=False):
-        self.__ligada = ligada  
+        self.ligada = False  
 
     def desliga(self):
-        self.__ligada = False
+        self.ligada = False
         self.esta_ligada()
 
     def liga(self):
-        self.__ligada = True
+        self.ligada = True
         self.esta_ligada()
     
     def esta_ligada(self):
-        if self.__ligada is True:
-            print(f"A lâmpada está ligada? {self.__ligada}")
+        if self.ligada is True:
+           return True
         else:
-            print(f"A lâmpada ainda está ligada? {self.__ligada}")    
+            return False
+            
 
 lamp1 = Lampada()
 
 lamp1.liga()
 
+print(f"A lâmpada está ligada? {lamp1.esta_ligada}")
+
 lamp1.desliga()
+
+print(f"A lâmpada ainda está ligada? {lamp1.esta_ligada}")    
 
 #
 #16
@@ -367,3 +372,177 @@ b = []
 for i in a[::-1]:
     b.append(i)
 print(b)
+
+#
+#21
+#Implemente duas classes Pato e Pardal que herdem de uma classe Passaro a 
+#habilidade de voar e emitir som, porém, tanto Pato quanto Pardal devem emitir 
+#sons diferentes (de maneira escrita) no console.
+"""
+Imprima no console exatamente assim:
+Pato
+Voando...
+Pato emitindo som...
+Quack Quack
+Pardal
+Voando...
+Pardal emitindo som...
+Piu Piu
+"""
+class Passaro:
+    def __init__(self):
+        print(type(self).__name__)
+    
+    def voar(self):
+        print('Voando...')
+    
+    def emitir_som(self, som):
+        print(f'{type(self).__name__} emitindo som...')
+        print(som)
+        
+
+class Pato(Passaro):
+    def __init__(self):
+      super().__init__()
+      super().voar()
+      super().emitir_som('Quack Quack')
+
+class Pardal(Passaro):
+    def __init__(self):
+      super().__init__()
+      super().voar()
+      super().emitir_som('Piu Piu')
+
+patolino = Pato()
+
+pard1 = Pardal()
+
+#
+#22
+# Crie uma classe chamada "Pessoa" com um atributo privado "nome" (representado como "__nome")
+# e um atributo público "id". Adicione duas funções à classe, uma para definir o valor de "nome" 
+# e outra para obter o valor de "nome". Observe que o atributo "nome" deve ser privado 
+# e acessado somente através dessas funções.
+"""
+Para testar seu código use:
+pessoa = Pessoa(0) 
+pessoa.nome = 'Fulano De Tal'
+print(pessoa.nome)
+"""
+class Pessoa():
+  def __init__(self, id):
+    self.__nome = None
+    self.id = id
+  
+  def nome(self, nome):
+    self.__nome = nome
+    
+    
+pessoa = Pessoa(0) 
+pessoa.nome = 'Fulano De Tal'
+print(pessoa.nome)
+
+#
+#23
+#Crie uma classe  Calculo  que contenha um método que aceita dois parâmetros, X e Y,
+# e retorne a soma dos dois. Nessa mesma classe, implemente um método de subtração, 
+# que aceita dois parâmetros, X e Y, e retorne a subtração dos dois (resultados negativos são permitidos).
+"""
+Utilize os valores abaixo para testar seu exercício:
+x = 4 
+y = 5
+
+imprima:
+Somando: 4+5 = 9
+Subtraindo: 4-5 = -1
+"""
+
+class Calculo:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+            
+    def soma(self):
+      soma = self.x + self.y
+      print(f'Somando: {self.x}+{self.y} = {soma}')
+    
+    def subtracao(self):
+      subtracao = self.x - self.y
+      print(f'Subtraindo: {self.x}-{self.y} = {subtracao}')
+      
+x = 4 
+y = 5
+
+calc = Calculo(x,y)
+calc.soma()
+calc.subtracao()
+
+#
+#24
+# Crie uma classe Ordenadora que contenha um atributo listaBaguncada e que contenha
+# os métodos ordenacaoCrescente e ordenacaoDecrescente.
+
+# Instancie um objeto chamado crescente dessa classe Ordenadora que tenha como 
+# listaBaguncada a lista [3,4,2,1,5] e 
+
+# instancie um outro objeto, decrescente dessa mesma classe com uma outra 
+# listaBaguncada sendo [9,7,6,8].
+
+# Para o primeiro objeto citado, use o método ordenacaoCrescente e 
+# para o segundo objeto, use o método ordenacaoDecrescente.
+"""
+Imprima o resultado da ordenação crescente e da ordenação decresce
+[1, 2, 3, 4, 5] 
+[9, 8, 7, 6]
+"""
+class Ordenadora:
+    def __init__(self, listaBaguncada):
+        self.listaBaguncada = listaBaguncada
+    
+    def ordenacaoCrescente(self):
+        self.listaCrescente = sorted(self.listaBaguncada)
+        return self.listaCrescente
+    
+    def ordenacaoDecrescente(self):
+        self.listaDecrescente = reversed(sorted(self.listaBaguncada))
+        return list(self.listaDecrescente)
+    
+lista1 = [3,4,2,1,5]   
+crescente = Ordenadora(lista1)
+print(crescente.ordenacaoCrescente())
+
+lista2 = [9,7,6,8]
+decrescente = Ordenadora(lista2)
+print(decrescente.ordenacaoDecrescente())
+
+#
+#25
+#Crie uma classe Avião que possua os atributos modelo, velocidade_maxima, cor e capacidade.
+
+#Defina o atributo cor de sua classe , de maneira que todas as instâncias de sua classe avião sejam da cor “azul”.
+
+# Após isso, a partir de entradas abaixo, instancie e armazene em uma lista 3 objetos da classe Avião.
+
+# Ao final, itere pela lista imprimindo cada um dos objetos no seguinte formato:
+"""
+“O avião de modelo “x” possui uma velocidade máxima de “y”, capacidade para “z” passageiros e é da cor “w”.
+"""
+# Sendo x, y, z e w cada um dos atributos da classe “Avião”.
+
+class Aviao:
+    def __init__(self, modelo, velocidade_maxima, capacidade):
+        self.modelo = modelo
+        self.velocidade_maxima = velocidade_maxima
+        self.capacidade = capacidade
+        self.cor = "azul"
+        
+        
+
+Boieng = Aviao("BOIENG456", "1500 km/h", 400)
+Praetor = Aviao("Embraer Praetor 600", "863km/h", 14)
+Antonov = Aviao("Antonov An-2", "258 Km/h", 12)
+
+lista = [Boieng, Praetor, Antonov]
+
+for i in lista:
+  print(f'O avião de modelo {i.modelo} possui uma velocidade máxima de {i.velocidade_maxima}, capacidade para {i.capacidade} passageiros e é da cor {i.cor}')
