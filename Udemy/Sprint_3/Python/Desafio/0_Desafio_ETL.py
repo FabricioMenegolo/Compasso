@@ -91,7 +91,7 @@ with open( path +'Pergunta_3.txt', 'w') as resposta3:
     resposta3.write(str(resultado3))
 """
 # Pergunta_4
-
+"""
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -118,7 +118,7 @@ print(resultado)
 with open( path +'Pergunta_4.txt', 'w') as resposta4:
     resultado4=resultado
     resposta4.write(str(resultado4))
-
+"""
 
 # Pergunta 5
 """
