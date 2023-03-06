@@ -71,7 +71,7 @@ with open( path +'Pergunta_2.txt', 'w') as resposta2:
     resposta2.write(str(resultado2))
 """
 # Pergunta_3
-
+"""
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -89,3 +89,57 @@ print(resultado[0])
 with open( path +'Pergunta_3.txt', 'w') as resposta3:
     resultado3=resultado[0]
     resposta3.write(str(resultado3))
+"""
+# Pergunta_4
+
+from csv import DictReader
+path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+with open(path + 'actors.csv') as arquivo:
+    leitor_csv = DictReader(arquivo)
+    next(leitor_csv)
+    resultado = []
+    frequencia_filmes = {}
+
+    for i in leitor_csv:
+        filme = i["#1 Movie"]
+        if filme in frequencia_filmes:
+            frequencia_filmes[filme] += 1
+        else:
+            frequencia_filmes[filme] = 1
+maior_frequencia_filmes = max(frequencia_filmes.values())
+filme_mais_frequente = [filme for filme, frequencia in frequencia_filmes.items() if frequencia_filmes == maior_frequencia_filmes]
+
+print(maior_frequencia_filmes)
+print(filme_mais_frequente)
+
+"""        num_filmes = int(i["Number of Movies"])
+        resultado.append([ator, num_filmes])
+        num_filmes_total += num_filmes
+
+resultado2 = num_filmes_total/len(ator)
+
+with open( path +'Pergunta_2.txt', 'w') as resposta2:
+    resultado2=resultado[0]
+    resposta2.write(str(resultado2))
+"""
+
+# Pergunta 5
+"""
+from csv import DictReader
+path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+with open(path + 'actors.csv') as arquivo:
+    leitor_csv = DictReader(arquivo)
+    next(leitor_csv)
+    resultado = []
+    for i in leitor_csv:
+        ator = i["Actor"]
+        num_filmes = i["Total Gross"]
+        resultado.append([ator, num_filmes])
+
+resultado.sort(key=lambda x: x[1], reverse=True)
+
+
+with open( path +'Pergunta_5.txt', 'w') as resposta5:
+    resultado5=resultado
+    resposta5.write(str(resultado5))
+"""
