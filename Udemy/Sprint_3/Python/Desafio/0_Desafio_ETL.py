@@ -107,21 +107,18 @@ with open(path + 'actors.csv') as arquivo:
         else:
             frequencia_filmes[filme] = 1
 maior_frequencia_filmes = max(frequencia_filmes.values())
-filme_mais_frequente = [filme for filme, frequencia in frequencia_filmes.items() if frequencia_filmes == maior_frequencia_filmes]
+filme_mais_frequente = [filme for filme, frequencia in frequencia_filmes.items() if frequencia == maior_frequencia_filmes]
 
 print(maior_frequencia_filmes)
 print(filme_mais_frequente)
 
-"""        num_filmes = int(i["Number of Movies"])
-        resultado.append([ator, num_filmes])
-        num_filmes_total += num_filmes
 
-resultado2 = num_filmes_total/len(ator)
+resultado = f'{filme_mais_frequente[0]}, {maior_frequencia_filmes}'
+print(resultado)
+with open( path +'Pergunta_4.txt', 'w') as resposta4:
+    resultado4=resultado
+    resposta4.write(str(resultado4))
 
-with open( path +'Pergunta_2.txt', 'w') as resposta2:
-    resultado2=resultado[0]
-    resposta2.write(str(resultado2))
-"""
 
 # Pergunta 5
 """
