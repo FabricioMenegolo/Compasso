@@ -27,7 +27,7 @@ Perguntas dessa tarefa
 
 5. A lista dos Autores ordenada por pagamento. Do mais bem pago para o menos bem pago
 """
-#pergunta1
+# Pergunta_1
 """
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
@@ -48,8 +48,8 @@ with open( path +'Pergunta_1.txt', 'w') as resposta1:
     resultado1=resultado[0]
     resposta1.write(str(resultado1))
 """
-#    ___________
-
+#  Pergunta_2
+"""
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -69,5 +69,23 @@ resultado2 = num_filmes_total/len(ator)
 with open( path +'Pergunta_2.txt', 'w') as resposta2:
     resultado2=resultado[0]
     resposta2.write(str(resultado2))
+"""
+# Pergunta_3
 
+from csv import DictReader
+path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+with open(path + 'actors.csv') as arquivo:
+    leitor_csv = DictReader(arquivo)
+    next(leitor_csv)
+    resultado = []
+    for i in leitor_csv:
+        ator = i["Actor"]
+        num_filmes = i["Average per Movie"]
+        resultado.append([ator, num_filmes])
 
+resultado.sort(key=lambda x: x[1], reverse=True)
+print(resultado[0])
+
+with open( path +'Pergunta_3.txt', 'w') as resposta3:
+    resultado3=resultado[0]
+    resposta3.write(str(resultado3))
