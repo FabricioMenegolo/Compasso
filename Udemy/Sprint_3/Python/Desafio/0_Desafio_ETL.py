@@ -28,7 +28,7 @@ Perguntas dessa tarefa
 5. A lista dos Autores ordenada por pagamento. Do mais bem pago para o menos bem pago
 """
 # Pergunta_1
-"""
+
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -39,17 +39,15 @@ with open(path + 'actors.csv') as arquivo:
         ator = i["Actor"]
         num_filmes = i["Number of Movies"]
         resultado.append([ator, num_filmes])
-print(resultado)
 
 resultado.sort(key=lambda x: x[1], reverse=True)
-print(resultado[0])
 
 with open( path +'Pergunta_1.txt', 'w') as resposta1:
     resultado1=resultado[0]
     resposta1.write(str(resultado1))
-"""
+
 #  Pergunta_2
-"""
+
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -67,11 +65,11 @@ with open(path + 'actors.csv') as arquivo:
 resultado2 = num_filmes_total/len(ator)
 
 with open( path +'Pergunta_2.txt', 'w') as resposta2:
-    resultado2=resultado[0]
+    resultado2=resultado
     resposta2.write(str(resultado2))
-"""
+
 # Pergunta_3
-"""
+
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -84,14 +82,13 @@ with open(path + 'actors.csv') as arquivo:
         resultado.append([ator, num_filmes])
 
 resultado.sort(key=lambda x: x[1], reverse=True)
-print(resultado[0])
 
 with open( path +'Pergunta_3.txt', 'w') as resposta3:
     resultado3=resultado[0]
     resposta3.write(str(resultado3))
-"""
+
 # Pergunta_4
-"""
+
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -109,19 +106,14 @@ with open(path + 'actors.csv') as arquivo:
 maior_frequencia_filmes = max(frequencia_filmes.values())
 filme_mais_frequente = [filme for filme, frequencia in frequencia_filmes.items() if frequencia == maior_frequencia_filmes]
 
-print(maior_frequencia_filmes)
-print(filme_mais_frequente)
-
-
 resultado = f'{filme_mais_frequente[0]}, {maior_frequencia_filmes}'
-print(resultado)
+
 with open( path +'Pergunta_4.txt', 'w') as resposta4:
     resultado4=resultado
     resposta4.write(str(resultado4))
-"""
 
-# Pergunta 5
-"""
+# Pergunta_5
+
 from csv import DictReader
 path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
@@ -135,8 +127,6 @@ with open(path + 'actors.csv') as arquivo:
 
 resultado.sort(key=lambda x: x[1], reverse=True)
 
-
 with open( path +'Pergunta_5.txt', 'w') as resposta5:
     resultado5=resultado
     resposta5.write(str(resultado5))
-"""
