@@ -30,7 +30,7 @@ Perguntas dessa tarefa
 # Pergunta_1
 
 from csv import DictReader
-path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+path = f'/mnt/wsl/PHYSICALDRIVE2/Projects/Compasso/Azimute/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
     leitor_csv = DictReader(arquivo)
     next(leitor_csv)
@@ -49,7 +49,7 @@ with open( path +'Pergunta_1.txt', 'w') as resposta1:
 #  Pergunta_2
 
 from csv import DictReader
-path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+#path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
     leitor_csv = DictReader(arquivo)
     next(leitor_csv)
@@ -71,7 +71,7 @@ with open( path +'Pergunta_2.txt', 'w') as resposta2:
 # Pergunta_3
 
 from csv import DictReader
-path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+#path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
     leitor_csv = DictReader(arquivo)
     next(leitor_csv)
@@ -90,7 +90,7 @@ with open( path +'Pergunta_3.txt', 'w') as resposta3:
 # Pergunta_4
 
 from csv import DictReader
-path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+#path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
     leitor_csv = DictReader(arquivo)
     next(leitor_csv)
@@ -115,7 +115,7 @@ with open( path +'Pergunta_4.txt', 'w') as resposta4:
 # Pergunta_5
 
 from csv import DictReader
-path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
+#path = f'C:/Users/fmene/OneDrive/Documentos/GitHub/Compasso/Udemy/Sprint_3/Python/Desafio/'
 with open(path + 'actors.csv') as arquivo:
     leitor_csv = DictReader(arquivo)
     next(leitor_csv)
