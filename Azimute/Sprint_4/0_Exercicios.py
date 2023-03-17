@@ -118,3 +118,8 @@ map
 """
 
 def calcular_valor_maximo(operadores,operandos) -> float:
+  t = list(zip(operandos, operadores))
+  n1 = list(map(lambda x: x[0][0] + x[0][1] if x[1] == "+" else x[0][0] - x[0][1] if x[1] == "-" else x[0][0] * x[0][1] if x[1] == "*" else x[0][0] / x[0][1] if x[1] == "/" else 0, t))
+  return max(n1)
+
+print(calcular_valor_maximo(operadores,operandos))
