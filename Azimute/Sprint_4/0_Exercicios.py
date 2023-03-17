@@ -1,6 +1,3 @@
-
-
-
 path = f'/mnt/wsl/PHYSICALDRIVE2/Projects/Compasso/Azimute/Sprint_4/'
 #
 # 1.
@@ -123,3 +120,51 @@ def calcular_valor_maximo(operadores,operandos) -> float:
   return max(n1)
 
 print(calcular_valor_maximo(operadores,operandos))
+
+#
+# 5.
+# Um determinado sistema escolar exporta a grade de notas dos estudantes em formato CSV.
+# Cada linha do arquivo corresponde ao nome do estudante, acompanhado de 5 notas de avaliação,
+# no intervalo [0-10]. É o arquivo estudantes.csv de seu exercício.
+
+# Precisamos processar seu conteúdo, de modo a gerar como saída um relatório em formato textual
+# contendo as seguintes informações:
+"""
+Nome do estudante
+
+Três maiores notas, em ordem decrescente
+
+Média das três maiores notas, com duas casas decimais de precisão
+
+O resultado do processamento deve ser escrito na saída padrão (print), 
+ordenado pelo nome do estudante e obedecendo ao formato descrito a seguir:
+"""
+# Nome: <nome estudante> Notas: [n1, n2, n3] Média: <média>
+"""
+Exemplo:
+Nome: Maria Luiza Correia Notas: [7, 5, 5] Média: 5.67
+Nome: Maria Mendes Notas: [7, 3, 3] Média: 4.33
+"""
+# Em seu desenvolvimento você deverá utilizar lambdas e as seguintes funções:
+"""
+round
+map
+sorted
+"""
+
+#print(list(filter(lambda x: x % 2 == 0, sorted(map(int, open(path + "estudantes.csv").read().splitlines()), reverse=True)))[:5])
+def rel_aluno(csv):
+  from csv import reader
+
+  nome_notas = list(reader(open(csv)))
+  top_5 = list((map(lambda x: (sorted(x[1:], key=int, reverse=True)),nome_notas)))
+  media = []
+  for notas in top_5:
+    media.append(round(sum(map(float, notas[:3]))/3,2))
+  msg = sorted(list(zip(map(lambda x: x[0],nome_notas),map(lambda x: x[:3], top_5), media)))
+  
+  for i in msg:
+    print(f"{str(i[0])} Notas: {str(i[1])} Média: {i[2]}")
+
+rel_aluno((path + "estudantes.csv"))
+
