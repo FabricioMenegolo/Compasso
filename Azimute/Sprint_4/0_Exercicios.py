@@ -157,14 +157,14 @@ def rel_aluno(csv):
   from csv import reader
 
   nome_notas = list(reader(open(csv)))
-  top_5 = list((map(lambda x: (sorted(x[1:], key=int, reverse=True)),nome_notas)))
+  top_5 = list(map(lambda x: (sorted(x[1:], key=int, reverse=True)),nome_notas))
   media = []
   for notas in top_5:
     media.append(round(sum(map(float, notas[:3]))/3,2))
-  msg = sorted(list(zip(map(lambda x: x[0],nome_notas),map(lambda x: x[:3], top_5), media)))
-  
+  msg = list(sorted(zip(map(lambda x: x[0],nome_notas),map(lambda x: x[:3], top_5), media)))
+    
   for i in msg:
-    print(f"{str(i[0])} Notas: {str(i[1])} Média: {i[2]}")
+    print(f"Nome: {str(i[0])} Notas: {list(map(int, i[1]))} Média: {i[2]}")
 
 rel_aluno((path + "estudantes.csv"))
 
