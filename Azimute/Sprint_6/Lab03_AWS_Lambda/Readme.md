@@ -181,6 +181,7 @@ Dica: Provavelmente será necessário aumentar o tempo limite e o tamanho da mem
 ![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(29).png)
 
 Referências
+
 https://docs.aws.amazon.com/pt_br/lambda/latest/dg/getting-started.html#getting-started-create-function
 
 https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-s3-example.html
