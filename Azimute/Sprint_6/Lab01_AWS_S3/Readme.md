@@ -17,13 +17,15 @@ Faça login no AWS Management Console e abra o console do Amazon S3 em https://c
 
 Selecione Create bucket (Criar bucket).
 
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(1).png
+
 Insira o Bucket name (Nome do bucket) (por exemplo, example.com).
 
 Selecione a região onde você deseja criar o bucket. Escolha US East (N. Virginia) us-east-1.
 
 Para aceitar as configurações padrão e criar o bucket, escolha Create (Criar).
 
-
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(2).png
 
 Etapa 2: Habilitar hospedagem de site estático
 
@@ -60,7 +62,7 @@ O nome do documento de erro diferencia letras maiúsculas de minúsculas e deve 
 
 Por exemplo, você pode encaminhar solicitações condicionalmente de acordo com nomes de chave de objeto ou prefixos específicos na solicitação. Para obter mais informações, consulte Configurar regras de redirecionamento para usar redirecionamentos condicionais avançados.
 
-
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(3).png
 
 Selecione Save changes.
 
@@ -72,7 +74,7 @@ Em Static website hosting (Hospedagem de sites estáticos), copie o endpoint inf
 
 O Endpoint é o endereço do site do Amazon S3 para o bucket.  Informe o endereço na barra de navegação de seu navegador para testar o resultado.
 
-
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(4).png
 
 Etapa 3: editar as configurações do Bloqueio de acesso público
 
@@ -87,13 +89,13 @@ Escolha o nome do bucket configurado como um site estático.
 
 Escolha Permissions (Permissões).
 
-Em Block public access (bucket settings) (Bloqueio de acesso público (configurações de bucket), escolha Edit (Editar).
+Em Block public access (bucket settings) Bloqueio de acesso público (configurações de bucket), escolha Edit (Editar).
 
 Desmarque Block all public access (Bloquear todo acesso público) e escolha Save changes (Salvar alterações).
 
 O Amazon S3 desativa as configurações do bloqueio de acesso público para seu bucket. Para criar um site público e estático, você também pode ter que editar as configurações de Bloqueio de acesso público para sua conta antes de adicionar uma política de bucket. Se as configurações da conta para bloquear acesso público estiverem ativadas no momento, você verá uma observação em Block public access (bucket settings) (Bloqueio de acesso público (configurações de bucket)).
 
-
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(7).png
 
 Etapa 4: Adicionar política de bucket que torna o conteúdo do bucket publicamente disponível
 
@@ -132,11 +134,13 @@ Na política de bucket do exemplo anterior, Bucket-Name é um espaço reservado 
 
 Selecione Save changes.
 
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(8).png
+
 Uma mensagem é exibida indicando que a política de bucket foi adicionada com sucesso.
 
 Se você vir um erro que diz Policy has invalid resource, confirme se o nome do bucket na política de bucket corresponde ao nome do seu bucket. Se você receber uma mensagem de erro e não puder salvar a política do bucket, verifique suas configurações de acesso público para confirmar que você permite acesso público ao bucket.
 
-
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(9).png
 
 Etapa 5: Configurar um documento de índice
 
@@ -179,7 +183,7 @@ Escolha Upload (Fazer upload) e siga as instruções para escolher e fazer uploa
 
 Crie uma pasta chamada dados e, após, faça upload do conteúdo do site (arquivo CSV) para ela.
 
-
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(5).png
 
 Etapa 6: configurar documento de erros
 
@@ -226,7 +230,7 @@ Na parte inferior da página, em Static website hosting (Hospedagem estática de
 Agora você tem um site hospedado no Amazon S3. Esse site está disponível publicamente no endpoint de site do Amazon S3. Você pode também ter um domínio, como example.com, para exibir o conteúdo do site que criou. Neste caso, é preciso executar etapas adicionais.
 
 
-
+https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(11).png
 
 
 Referência
