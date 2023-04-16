@@ -1,15 +1,9 @@
-Lab AWS S3
+#Lab AWS S3
+
 Objetivo:
-
-
 Explorar as capacidades do serviço AWS S3.  Nos passos que seguem, você será guiado pelas configurações necessárias para que um bucket do Amazon S3 funcione como hospedagem de conteúdo estático.
 
-
-
-
-
-Etapa 1: Criar um bucket
-
+##Etapa 1: Criar um bucket
 
 As instruções a seguir fornecem uma visão geral de como criar seus buckets para hospedagem de conteúdo estático:
 
@@ -17,7 +11,7 @@ Faça login no AWS Management Console e abra o console do Amazon S3 em https://c
 
 Selecione Create bucket (Criar bucket).
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(1).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(1).png)
 
 Insira o Bucket name (Nome do bucket) (por exemplo, example.com).
 
