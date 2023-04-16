@@ -19,14 +19,11 @@ Selecione a região onde você deseja criar o bucket. Escolha US East (N. Virgin
 
 Para aceitar as configurações padrão e criar o bucket, escolha Create (Criar).
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(2).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(2).png)
 
-Etapa 2: Habilitar hospedagem de site estático
-
+##Etapa 2: Habilitar hospedagem de site estático
 
 Depois de criar um bucket, você pode habilitar a hospedagem de site estático nele. Os passos necessários são:
-
-
 
 Faça login no AWS Management Console e abra o console do Amazon S3 em https://console.aws.amazon.com/s3/.
 
@@ -44,38 +41,29 @@ Em Index Document (Documento de índice), insira o nome do arquivo do documento 
 
 O nome do documento de índice diferencia letras maiúsculas de minúsculas e deve corresponder exatamente ao nome do arquivo do documento de índice HTML do qual você planeja fazer upload para o bucket do S3. Quando você configura um bucket para hospedagem de site, deve especificar um documento de índice. O Amazon S3 retorna esse documento de índice quando as solicitações são feitas para o domínio raiz ou alguma subpasta.
 
-
-
 Para fornecer seu próprio documento de erros personalizado para erros da classe 4XX, em Error document (Documento de erros), insira o nome de arquivo do documento de erros personalizado.
 
 O nome do documento de erro diferencia letras maiúsculas de minúsculas e deve corresponder exatamente ao nome do arquivo do documento de erro HTML do qual você planeja fazer upload para o bucket do S3. Se você não especificar um documento de erro personalizado e ocorrer um erro, o Amazon S3 retornará um documento de erro HTML padrão.
-
-
 
 (Opcional) Se você quiser especificar regras avançadas de redirecionamento em Redirection rules (Regras de redirecionamento), use JSON para descrevê-las.
 
 Por exemplo, você pode encaminhar solicitações condicionalmente de acordo com nomes de chave de objeto ou prefixos específicos na solicitação. Para obter mais informações, consulte Configurar regras de redirecionamento para usar redirecionamentos condicionais avançados.
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(3).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(3).png)
 
 Selecione Save changes.
 
 O Amazon S3 permite a hospedagem estática de sites para seu bucket. Na parte inferior da página, em Static website hosting (Hospedagem estática de sites), você verá o endpoint do site do seu bucket.
 
-
-
 Em Static website hosting (Hospedagem de sites estáticos), copie o endpoint informado.
 
 O Endpoint é o endereço do site do Amazon S3 para o bucket.  Informe o endereço na barra de navegação de seu navegador para testar o resultado.
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(4).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(4).png)
 
-Etapa 3: editar as configurações do Bloqueio de acesso público
-
+##Etapa 3: editar as configurações do Bloqueio de acesso público
 
 Por padrão, o Amazon S3 bloqueia o acesso público à sua conta e aos seus buckets. Se quiser usar um bucket para hospedar um site estático, use estas etapas para editar as configurações de bloqueio de acesso público.
-
-
 
 Abra o console do Amazon S3 em https://console.aws.amazon.com/s3/.
 
@@ -89,10 +77,9 @@ Desmarque Block all public access (Bloquear todo acesso público) e escolha Save
 
 O Amazon S3 desativa as configurações do bloqueio de acesso público para seu bucket. Para criar um site público e estático, você também pode ter que editar as configurações de Bloqueio de acesso público para sua conta antes de adicionar uma política de bucket. Se as configurações da conta para bloquear acesso público estiverem ativadas no momento, você verá uma observação em Block public access (bucket settings) (Bloqueio de acesso público (configurações de bucket)).
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(7).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(7).png)
 
-Etapa 4: Adicionar política de bucket que torna o conteúdo do bucket publicamente disponível
-
+##Etapa 4: Adicionar política de bucket que torna o conteúdo do bucket publicamente disponível
 
 Depois de editar as configurações do bloqueio de acesso público do S3, é possível adicionar uma política de bucket para conceder acesso público de somente leitura ao bucket. Ao conceder um acesso público de leitura, qualquer pessoa na Internet poderá acessar seu bucket.
 
@@ -124,28 +111,21 @@ No JSON acima, substitua, na seção Resource, o valor de Bucket-Name para o nom
 
 Na política de bucket do exemplo anterior, Bucket-Name é um espaço reservado para o nome do bucket. Para usar essa política de bucket com seu próprio bucket, você deve atualizar esse nome para corresponder ao nome do seu bucket.
 
-
-
 Selecione Save changes.
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(8).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(8).png)
 
 Uma mensagem é exibida indicando que a política de bucket foi adicionada com sucesso.
 
 Se você vir um erro que diz Policy has invalid resource, confirme se o nome do bucket na política de bucket corresponde ao nome do seu bucket. Se você receber uma mensagem de erro e não puder salvar a política do bucket, verifique suas configurações de acesso público para confirmar que você permite acesso público ao bucket.
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(9).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(9).png)
 
-Etapa 5: Configurar um documento de índice
-
+##Etapa 5: Configurar um documento de índice
 
 Quando você habilita a hospedagem de sites estáticos para seu bucket, deve informar o nome do documento de índice (por exemplo, index.html). Naturalmente, o arquivo informado deverá estar presente no bucket para que a configuração tenha efeito.
 
-
-
 Vamos aos passo para configuração do documento de índice:
-
-
 
 Criar um arquivo local (sua máquina) com o nome index.html . O conteúdo do arquivo deverá ser (atente-se para o atributo href do link, pois ele deverá apontar para o arquivo CSV):
 
@@ -163,8 +143,6 @@ Salvar as alterações.
 
 O nome do documento de índice deve corresponder exatamente ao nome do documento de índice que você inseriu na caixa de diálogo Hospedagem de site estático. O nome do documento de índice diferencia maiúsculas de minúsculas. Por exemplo, se você informou index.html na configuração do bucket, seu documento de índice também deverá ser index.html (e não Index.html, por exemplo).
 
-
-
 Faça login no AWS Management Console e abra o console do Amazon S3 em https://console.aws.amazon.com/s3/.
 
 Na lista Buckets, selecione o nome do bucket que você configurou hospedagem de conteúdo estático.
@@ -177,22 +155,18 @@ Escolha Upload (Fazer upload) e siga as instruções para escolher e fazer uploa
 
 Crie uma pasta chamada dados e, após, faça upload do conteúdo do site (arquivo CSV) para ela.
 
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(5).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(5).png)
 
-Etapa 6: configurar documento de erros
+##Etapa 6: configurar documento de erros
 
 
 Depois de habilitar a hospedagem de sites estáticos para seu bucket, faça upload para o bucket de um arquivo HTML para notificação de erros.  Veja quais são os passos:
-
-
 
 Crie um documento de erro com o nome 404.html.
 
 Salve o arquivo localmente.
 
 O nome do documento de erros diferencia maiúsculas e minúsculas e deve corresponder exatamente ao nome que você insere ao habilitar a hospedagem estática do site. Por exemplo, se você inserir 404.html como o nome do Error document (Documento de erro) na caixa de diálogo Static website hosting (Hospedagem de site estático), o nome de arquivo do documento de erro também deve ser 404.html.
-
-
 
 Faça login no AWS Management Console e abra o console do Amazon S3 em https://console.aws.amazon.com/s3/
 
@@ -204,14 +178,9 @@ Arraste e solte o arquivo de índice na listagem de buckets do console.
 
 Escolha Upload (Fazer upload) e siga as instruções para escolher e fazer upload do arquivo de índice.
 
-
-
-Etapa 7: testar o endpoint do site
-
+##Etapa 7: testar o endpoint do site
 
 Depois de configurar a hospedagem de site estático para seu bucket, você pode testá-lo em seu navegador. Para tal, siga os passos a seguir:
-
-
 
 Faça login no AWS Management Console e abra o console do Amazon S3 em https://console.aws.amazon.com/s3/.
 
@@ -223,8 +192,7 @@ Na parte inferior da página, em Static website hosting (Hospedagem estática de
 
 Agora você tem um site hospedado no Amazon S3. Esse site está disponível publicamente no endpoint de site do Amazon S3. Você pode também ter um domínio, como example.com, para exibir o conteúdo do site que criou. Neste caso, é preciso executar etapas adicionais.
 
-
-https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(11).png
+![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(11).png)
 
 
 Referência
