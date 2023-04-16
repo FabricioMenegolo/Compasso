@@ -1,9 +1,9 @@
-#Lab AWS S3
+#Lab AWS S3#
 
 Objetivo:
 Explorar as capacidades do serviço AWS S3.  Nos passos que seguem, você será guiado pelas configurações necessárias para que um bucket do Amazon S3 funcione como hospedagem de conteúdo estático.
 
-##Etapa 1: Criar um bucket
+##Etapa 1: Criar um bucket##
 
 As instruções a seguir fornecem uma visão geral de como criar seus buckets para hospedagem de conteúdo estático:
 
@@ -21,7 +21,7 @@ Para aceitar as configurações padrão e criar o bucket, escolha Create (Criar)
 
 ![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(2).png)
 
-##Etapa 2: Habilitar hospedagem de site estático
+##Etapa 2: Habilitar hospedagem de site estático##
 
 Depois de criar um bucket, você pode habilitar a hospedagem de site estático nele. Os passos necessários são:
 
@@ -61,7 +61,7 @@ O Endpoint é o endereço do site do Amazon S3 para o bucket.  Informe o endere�
 
 ![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(4).png)
 
-##Etapa 3: editar as configurações do Bloqueio de acesso público
+##Etapa 3: editar as configurações do Bloqueio de acesso público##
 
 Por padrão, o Amazon S3 bloqueia o acesso público à sua conta e aos seus buckets. Se quiser usar um bucket para hospedar um site estático, use estas etapas para editar as configurações de bloqueio de acesso público.
 
@@ -79,7 +79,7 @@ O Amazon S3 desativa as configurações do bloqueio de acesso público para seu 
 
 ![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(7).png)
 
-##Etapa 4: Adicionar política de bucket que torna o conteúdo do bucket publicamente disponível
+##Etapa 4: Adicionar política de bucket que torna o conteúdo do bucket publicamente disponível##
 
 Depois de editar as configurações do bloqueio de acesso público do S3, é possível adicionar uma política de bucket para conceder acesso público de somente leitura ao bucket. Ao conceder um acesso público de leitura, qualquer pessoa na Internet poderá acessar seu bucket.
 
@@ -121,7 +121,7 @@ Se você vir um erro que diz Policy has invalid resource, confirme se o nome do 
 
 ![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(9).png)
 
-##Etapa 5: Configurar um documento de índice
+##Etapa 5: Configurar um documento de índice##
 
 Quando você habilita a hospedagem de sites estáticos para seu bucket, deve informar o nome do documento de índice (por exemplo, index.html). Naturalmente, o arquivo informado deverá estar presente no bucket para que a configuração tenha efeito.
 
@@ -157,7 +157,7 @@ Crie uma pasta chamada dados e, após, faça upload do conteúdo do site (arquiv
 
 ![Screenshot](https://github.com/FabricioMenegolo/Compasso/blob/main/Azimute/Sprint_6/assets/Sprint6%20(5).png)
 
-##Etapa 6: configurar documento de erros
+##Etapa 6: configurar documento de erros##
 
 
 Depois de habilitar a hospedagem de sites estáticos para seu bucket, faça upload para o bucket de um arquivo HTML para notificação de erros.  Veja quais são os passos:
@@ -178,7 +178,7 @@ Arraste e solte o arquivo de índice na listagem de buckets do console.
 
 Escolha Upload (Fazer upload) e siga as instruções para escolher e fazer upload do arquivo de índice.
 
-##Etapa 7: testar o endpoint do site
+##Etapa 7: testar o endpoint do site##
 
 Depois de configurar a hospedagem de site estático para seu bucket, você pode testá-lo em seu navegador. Para tal, siga os passos a seguir:
 
