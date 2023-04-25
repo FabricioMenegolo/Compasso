@@ -9,7 +9,6 @@ Perguntas dessa tarefa
 """
 path = f'/mnt/wsl/PHYSICALDRIVE2/Projects/Compasso/Azimute/Sprint_7/Tarefa_1/'
 import pandas as pd
-import numpy as np
 actors = pd.read_csv(path + 'actors.csv')
 
 # 1. Identifique o ator/atriz com maior número de filmes e o respectivo número de filmes.
@@ -23,6 +22,7 @@ nome_ator1 = maior_num_filmes['Actor']
 num_filmes = maior_num_filmes['Number of Movies']
 
 print("Ator/atriz com maior número de filmes é:",[nome_ator1,num_filmes])
+
 # 2. Apresente a média da coluna contendo o número de filmes.
 print("RESPOSTA 2")
 actors = pd.read_csv(path + 'actors.csv')
