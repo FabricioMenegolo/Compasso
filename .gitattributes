@@ -1,0 +1,2 @@
+path/to/large/files filter=lfs diff=lfs merge=lfs -text
+mnt/wsl/PHYSICALDRIVE2/Projects/Compasso/Azimute/Sprint_7/Desafio01_ETL/assets/*.csv filter=lfs diff=lfs merge=lfs -text
