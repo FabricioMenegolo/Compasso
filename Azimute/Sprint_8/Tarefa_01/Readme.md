@@ -63,8 +63,8 @@ Os passos são:
 
 ----- No Resumo, informe que o objetivo é para estudos
 
-Etapa 2 - Testando rapidamente as credenciais e a biblioteca
 
+### Etapa 2 - Testando rapidamente as credenciais e a biblioteca
 
 
 Uma vez que você tenha sua chave de API, você pode fazer solicitações à API usando a seguinte estrutura de URL:

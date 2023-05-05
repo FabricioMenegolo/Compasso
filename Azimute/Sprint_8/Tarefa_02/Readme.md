@@ -42,8 +42,7 @@ Em sua conta AWS, no serviço AWS Lambda, realize as seguintes atividades:
 
 
 
-Informação adicional:
-
+### Informação adicional:
 
 
 Podemos utilizar os serviços  CloudWatch Event ou Amazon EventBridge para agendar extrações periódicas de dados no Twitter de forma automática.
