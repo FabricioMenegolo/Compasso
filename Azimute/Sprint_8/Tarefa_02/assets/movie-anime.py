@@ -1,6 +1,6 @@
 import requests
 
-url = "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&page=1&sort_by=popularity.desc&with_genres=16%252C10759%252C10765&with_keywords=210024%252C13141&with_original_language=ja"
+url = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&with_keywords=285442"
 
 headers = {
     "accept": "application/json",
