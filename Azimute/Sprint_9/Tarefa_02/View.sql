@@ -1,3 +1,36 @@
+--TABELAS DIMENSAO
+/*
+Essas views nas tabelas de dimensão facilitam o acesso aos atributos descritivos
+ e contextuais das dimensões, tornando as consultas mais legíveis e simplificadas.
+*/
+
+-- View da Tabela Combustivel
+-- É útil para obter informações detalhadas sobre os diferentes tipos de combustível disponíveis.
+CREATE VIEW vw_dim_combustivel AS
+SELECT idcombustivel, tipoCombustivel
+FROM tb_combustivel;
+
+-- View da Tabela Carro
+-- Isso pode ser usado para análises mais detalhadas e para referenciar os atributos do carro em outras consultas.
+CREATE VIEW vw_dim_carro AS
+SELECT idCarro, classiCarro, marcaCarro, modeloCarro, anoCarro, idcombustivel
+FROM tb_carro;
+
+-- View da Tabela Cliente
+-- É útil para obter informações detalhadas sobre os clientes, análises de segmentação, identificação de padrões geográficos ou referência em consultas relacionadas aos clientes.
+CREATE VIEW vw_dim_cliente AS
+SELECT idCliente, nomeCliente, cidadeCliente, estadoCliente, paisCliente
+FROM tb_cliente;
+
+-- View da Tabela Vendedor
+-- É útil para análises relacionadas aos vendedores, como avaliar seu desempenho, agrupá-los por estado ou referenciar suas informações em outras consultas.
+CREATE VIEW vw_dim_vendedor AS
+SELECT idVendedor, nomeVendedor, sexoVendedor, estadoVendedor
+FROM tb_vendedor;
+
+
+-- TABELAS FATO
+
 /*
 Escolhi esse conjunto de tabelas a fim de abranger diferentes aspectos das
  locações de carros, como tipo de combustível, o desempenho individual dos 
