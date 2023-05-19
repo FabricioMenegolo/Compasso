@@ -67,7 +67,7 @@ JOIN tb_carro ON tb_locacao.idCarro = tb_carro.idCarro
 GROUP BY tb_carro.modeloCarro;
 
 -- View Locações por Cliente
--- Isso pode ajudar na segmentação de clientes e na elaboração de estratégias de fidelização e retenção, além de identificar oportunidades de upselling ou cross-selling para clientes de alto valor.
+-- Isso pode ajudar na segmentação de clientes e na elaboração de estratégias de fidelização e retenção, além de identificar oportunidades de vendas adicionais e proporcionar uma experiência de locação de carros mais satisfatória.
 CREATE VIEW vw_locacoes_cliente AS
 SELECT tb_cliente.nomeCliente, COUNT(*) AS quantidade_locacoes, SUM(tb_locacao.vlrDiaria) AS valor_total_locacoes, AVG(tb_locacao.vlrDiaria) AS media_valor_locacoes
 FROM tb_locacao
