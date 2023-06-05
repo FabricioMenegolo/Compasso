@@ -66,6 +66,7 @@ df_movies_TMDB = spark.read.json(path3 + 'movies_20230527_033040.json')
 df_series_TMDB = spark.read.json(path4 + 'series_20230527_033040.json')
 df_movies_IMDB = df_movies_IMDB.withColumnRenamed("tituloPincipal", "tituloPrincipal")
 df_series_IMDB = df_series_IMDB.withColumnRenamed("tituloPincipal", "tituloPrincipal")
+
 # Converter a coluna 'title' do DataFrame JSON para um array de palavras e extrair o ano de lançamento
 df_movies_TMDB_titulos_datas = df_movies_TMDB.select(
     regexp_replace(col('title'), r"[^a-zA-Z0-9\s]", "").alias('title_replaced'),
@@ -95,7 +96,7 @@ df_movies_IMDB_trusted = df_movies_IMDB.join(df_movies_TMDB_titulos_datas,
 # Remover as colunas 'title' e 'releaseDate' do DataFrame
 df_movies_IMDB_trusted = df_movies_IMDB_trusted.drop('title_replaced', 'releaseDate')
 
-# Trata os valores "NA" na coluna "anoFalecimento"
+# Trata os valores "NA" na coluna
 df_movies_IMDB_trusted = df_movies_IMDB_trusted.withColumn("anoFalecimento", when(col("anoFalecimento") == "\\N", None).otherwise(col("anoFalecimento")))
 df_movies_IMDB_trusted = df_movies_IMDB_trusted.withColumn("anoNascimento", when(col("anoNascimento") == "\\N", None).otherwise(col("anoNascimento")))
 df_movies_IMDB_trusted = df_movies_IMDB_trusted.withColumn("tempoMinutos", when(col("tempoMinutos") == "\\N", None).otherwise(col("tempoMinutos")))
@@ -133,6 +134,7 @@ df_series_IMDB_layer1 = df_series_IMDB.join(df_series_TMDB_titulos_datas,
 # Remover as colunas 'title' e 'releaseDate' do DataFrame
 df_series_IMDB_layer1 = df_series_IMDB_layer1.drop('title_replaced', 'releaseDate')
 
+# Trata os valores "NA" na coluna
 df_series_IMDB_layer1 = df_series_IMDB_layer1.withColumn("anoTermino", when(col("anoTermino") == "\\N", None).otherwise(col("anoTermino")))
 df_series_IMDB_layer1 = df_series_IMDB_layer1.withColumn("tempoMinutos", when(col("tempoMinutos") == "\\N", None).otherwise(col("tempoMinutos")))
 df_series_IMDB_layer1 = df_series_IMDB_layer1.withColumn("notaMedia", when(col("notaMedia") == "\\N", None).otherwise(col("notaMedia")))
@@ -167,7 +169,6 @@ df_series_TMDB_trusted = df_series_TMDB.join(df_movies_TMDB_titulos_datas,
 # Retira colunas irrelevantes
 df_series_TMDB_trusted = df_series_TMDB_trusted.drop('titulo','backdrop_path','poster_path','title_replaced','releaseDate')
 
-# Trata os valores "NA" nas colunas
 # Trata os valores "NA" nas colunas
 df_series_TMDB_trusted = df_series_TMDB_trusted.withColumn("first_air_date", when(col("first_air_date") == "", None).otherwise(col("first_air_date")))
 df_series_TMDB_trusted = df_series_TMDB_trusted.withColumn("genre_ids", when(size(col("genre_ids")) == 0, None).otherwise(col("genre_ids")))
@@ -218,6 +219,8 @@ df_series_IMDB_trusted = df_series_IMDB_trusted.distinct()
 
 # remove os colunas não relevantes
 df_movies_TMDB_trusted = df_movies_TMDB.drop('adult','backdrop_path','poster_path','video')
+
+# Trata os valores "NA" na coluna
 df_movies_TMDB_trusted = df_movies_TMDB_trusted.withColumn("popularity", when(col("popularity") == "", None).otherwise(col("popularity")))
 df_movies_TMDB_trusted = df_movies_TMDB_trusted.withColumn("vote_average", when(col("vote_average") == "", None).otherwise(col("vote_average")))
 df_movies_TMDB_trusted = df_movies_TMDB_trusted.withColumn("vote_count", when(col("vote_count") == "", None).otherwise(col("vote_count")))
