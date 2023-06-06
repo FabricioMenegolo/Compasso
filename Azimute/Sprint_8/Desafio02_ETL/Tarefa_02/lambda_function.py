@@ -14,8 +14,8 @@ def lambda_handler(event, context):
     month = now.strftime("%m")
     day = now.strftime("%d")
     
-    movies_url = f'https://api.themoviedb.org/3/discover/movie?language=pt-BR&with_keywords=285442'
-    series_url = f'https://api.themoviedb.org/3/discover/tv?language=pt-BR&with_keywords=210024%252C13141&with_original_language=ja'
+    movies_url = f'https://api.themoviedb.org/3/discover/movie?with_keywords=285442'
+    series_url = f'https://api.themoviedb.org/3/discover/tv?with_keywords=210024%252C13141&with_original_language=ja'
 
     headers = {
         "accept": "application/json",

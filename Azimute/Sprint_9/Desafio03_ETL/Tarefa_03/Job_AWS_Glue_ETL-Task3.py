@@ -240,10 +240,10 @@ mes = current_date.strftime("%m")
 dia = current_date.strftime("%d")
 
 # Define os caminhos de destino no S3 para os DataFrames no formato Parquet
-path_trt_local_movies = "s3://data-lake-do-fabricio/TRT/Local/Filmes/{ano}/{mes}/{dia}/"
-path_trt_local_series = "s3://data-lake-do-fabricio/TRT/Local/Series/{ano}/{mes}/{dia}/"
-path_trt_tmdb_movies = "s3://data-lake-do-fabricio/TRT/TMDB/Filmes/{ano}/{mes}/{dia}/"
-path_trt_tmdb_series = "s3://data-lake-do-fabricio/TRT/TMDB/Series/{ano}/{mes}/{dia}/"
+path_trt_local_movies = "s3://data-lake-do-fabricio/TRT/Local/Parquet/Movies/{ano}/{mes}/{dia}/"
+path_trt_local_series = "s3://data-lake-do-fabricio/TRT/Local/Parquet/Series/{ano}/{mes}/{dia}/"
+path_trt_tmdb_movies = "s3://data-lake-do-fabricio/TRT/TMDB/Parquet/Movies/{ano}/{mes}/{dia}/"
+path_trt_tmdb_series = "s3://data-lake-do-fabricio/TRT/TMDB/Parquet/Series/{ano}/{mes}/{dia}/"
 
 # Salva os DataFrames no formato Parquet no S3
 df_movies_IMDB_trusted.write.parquet(path_trt_local_movies.format(ano=ano, mes=mes, dia=dia))
