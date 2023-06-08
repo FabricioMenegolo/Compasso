@@ -40,20 +40,32 @@ SELECT
   titulosMaisConhecidos
 FROM dash.actors_tb;
 
--- Criação da tabela fato_actors_movies
-CREATE OR REPLACE VIEW fato_actors_movies AS
+-- Criação da view fato_actors_movies
+CREATE OR REPLACE VIEW movies_series_combined_dim AS
 SELECT
-  ROW_NUMBER() OVER (ORDER BY a.id, m.id) AS id,
-  a.id AS actor_id,
-  m.movie_id
-FROM dash.actors_tb a
-JOIN Dash.movies_tb m ON a.id = m.movie_id;
-
--- Criação da tabela fato_actors_series
-CREATE OR REPLACE VIEW fato_actors_series AS
+  id,
+  genre_ids,
+  title,
+  CAST(tempoMinutos AS int) AS tempoMinutos,
+  release_date AS dataLancamento,
+  original_language,
+  popularity,
+  nota_media,
+  votos,
+  'Filme' AS tipo
+FROM
+  Dash.movies_tb
+UNION ALL
 SELECT
-  ROW_NUMBER() OVER (ORDER BY a.id, s.id) AS id,
-  a.id AS actor_id,
-  s.seriesId AS series_id
-FROM dash.actors_tb a
-JOIN dash.series_tb s ON a.id = s.seriesId;
+  id,
+  genre_ids,
+  name AS title,
+  tempoMinutos,
+  first_air_date AS dataLancamento,
+  original_language,
+  popularity,
+  nota_media,
+  votos,
+  'Série' AS tipo
+FROM
+  dash.series_tb;
