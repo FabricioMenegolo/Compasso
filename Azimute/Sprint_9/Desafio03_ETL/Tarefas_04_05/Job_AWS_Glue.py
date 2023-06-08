@@ -4,7 +4,7 @@ from awsglue.utils import getResolvedOptions
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
-from pyspark.sql.functions import col, substring, regexp_replace, expr, size, levenshtein, avg, when, format_number, sum, lower
+from pyspark.sql.functions import col, substring, regexp_replace, expr, size, levenshtein, avg, when, format_number, sum, lower, trim, split
 from pyspark.sql import functions as F
 from datetime import datetime
 
@@ -85,21 +85,22 @@ df_movies_refined = df_movies_TMDB_titulos_datas.join(
     (col('title_replaced') != ''),
     'left_outer'
 )
+
 # Calcular a soma de vote_count e numeroVotos (se não forem nulos)
-df_movies_refined = df_movies_refined.withColumn('votos', when(
-    col('vote_count').isNotNull() & col('numeroVotos').isNotNull(),
-    col('vote_count') + col('numeroVotos')
-).otherwise(
-    when(col('vote_count').isNotNull(), col('vote_count')).otherwise(col('numeroVotos'))
-))
+df_movies_refined = df_movies_refined.withColumn('votos', col('vote_count') + col('numeroVotos'))
 
 # Calcular a média de vote_average e notaMedia (se não forem nulos)
 df_movies_refined = df_movies_refined.withColumn('nota_media', when(
-    col('vote_average').isNotNull() & col('notaMedia').isNotNull(),
-    format_number((col('vote_average') + col('notaMedia')) / 2, 1)
+    col('vote_count').isNotNull() & col('numeroVotos').isNotNull(),
+    (col('vote_average') * col('vote_count') + col('notaMedia') * col('numeroVotos')) / col('votos')
 ).otherwise(
-    when(col('vote_average').isNotNull(), format_number(col('vote_average'), 1)).otherwise(format_number(col('notaMedia'), 1))
+    when(col('vote_count').isNotNull(), col('vote_average')).otherwise(col('notaMedia'))
 ))
+
+# Tratar valores nulos e arredondar a nota média ponderada para uma casa decimal
+df_movies_refined = df_movies_refined.withColumn('votos', when(col('votos').isNull(), col('vote_count')).otherwise(col('votos')))
+df_movies_refined = df_movies_refined.withColumn('nota_media', when(col('nota_media').isNull(), col('vote_average')).otherwise(col('nota_media')))
+df_movies_refined = df_movies_refined.withColumn('nota_media', format_number(col('nota_media'), 1))
 
 # Apagar as colunas indesejadas
 df_movies_refined = df_movies_refined.drop('releaseDate', 'tituloPrincipal_replaced', 'anoLancamento', 'title_replaced','vote_average','vote_count','notaMedia','numeroVotos','tituloOriginal','genero')
@@ -152,6 +153,7 @@ df_series_TMDB_Layer1 = df_series_TMDB_titulos_datas.join(
 
 # Apagar as colunas indesejadas
 df_series_TMDB_Layer1 = df_series_TMDB_Layer1.drop('title_replaced')
+
 # Aplicar regexp_replace no dataframe df_movies_IMDB
 df_series_IMDB_titulos_datas = df_series_IMDB.select(
     regexp_replace(col('tituloPrincipal'), r"[^a-zA-Z0-9\s]", "").alias('tituloPrincipal_replaced'),
@@ -188,21 +190,20 @@ df_series_refined = df_series_TMDB_Layer1.join(
     'left_outer'
 )
 
-# Calcular a soma de vote_count e numeroVotos (se não forem nulos)
-df_series_refined = df_series_refined.withColumn('votos', when(
+# Criar colunas com a soma dos votos e a média ponderada
+df_series_refined = df_series_refined.withColumn('votos', col('vote_count') + col('numeroVotos'))
+
+df_series_refined = df_series_refined.withColumn('nota_media', when(
     col('vote_count').isNotNull() & col('numeroVotos').isNotNull(),
-    col('vote_count') + col('numeroVotos')
+    (col('vote_average') * col('vote_count') + col('notaMedia') * col('numeroVotos')) / col('votos')
 ).otherwise(
-    when(col('vote_count').isNotNull(), col('vote_count')).otherwise(col('numeroVotos'))
+    when(col('vote_count').isNotNull(), col('vote_average')).otherwise(col('notaMedia'))
 ))
 
-# Calcular a média de vote_average e notaMedia (se não forem nulos)
-df_series_refined = df_series_refined.withColumn('nota_media', when(
-    col('vote_average').isNotNull() & col('notaMedia').isNotNull(),
-    format_number((col('vote_average') + col('notaMedia')) / 2, 1)
-).otherwise(
-    when(col('vote_average').isNotNull(), format_number(col('vote_average'), 1)).otherwise(format_number(col('notaMedia'), 1))
-))
+# Tratar valores nulos e arredondar a nota média ponderada para uma casa decimal
+df_series_refined = df_series_refined.withColumn('votos', when(col('votos').isNull(), col('vote_count')).otherwise(col('votos')))
+df_series_refined = df_series_refined.withColumn('nota_media', when(col('nota_media').isNull(), col('vote_average')).otherwise(col('nota_media')))
+df_series_refined = df_series_refined.withColumn('nota_media', format_number(col('nota_media'), 1))
 
 # Apagar as colunas indesejadas
 df_series_refined = df_series_refined.drop('releaseDate', 'tituloPrincipal_replaced', 'releaseDate', 'name_replaced','vote_average','vote_count','notaMedia','numeroVotos','tituloPrincipal','anoLancamento')
@@ -236,7 +237,14 @@ df_series_actors = df_series_actors.distinct()
 
 # Unir df Atores de filmes e series
 df_actors = df_movies_actors.unionAll(df_series_actors)
-df_actors = df_series_actors.withColumn("IdArtista", F.monotonically_increasing_id())  # Adicionar uma coluna de ID único para os artistas
+df_actors = df_actors.withColumn("IdArtista", F.monotonically_increasing_id())  # Adicionar uma coluna de ID único para os artistas
+
+# Atualizar o formato da coluna 'profissao'
+df_actors = df_actors.withColumn('profissao', split(regexp_replace(df_actors['profissao'], ',\\s*', ','), ','))
+
+# Atualizar o formato da coluna 'titulosMaisConhecidos'
+df_actors = df_actors.withColumn('titulosMaisConhecidos', split(regexp_replace(df_actors['titulosMaisConhecidos'], ',\\s*', ','), ','))
+
 
 df_movies_refined.createOrReplaceTempView("movies")
 df_series_refined.createOrReplaceTempView("series")
