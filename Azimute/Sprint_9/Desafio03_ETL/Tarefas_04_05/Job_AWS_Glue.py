@@ -4,8 +4,9 @@ from awsglue.utils import getResolvedOptions
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
-from pyspark.sql.functions import col, substring, regexp_replace, expr, size, levenshtein, avg, when, format_number, sum, lower, trim, split
+from pyspark.sql.functions import col, substring, regexp_replace, expr, size, levenshtein, avg, when, format_number, sum, lower, trim, split, dense_rank
 from pyspark.sql import functions as F
+from pyspark.sql.window import Window
 from datetime import datetime
 
   
@@ -71,7 +72,7 @@ df_movies_refined = df_movies_TMDB_titulos_datas.join(
         "(size(split(title_replaced, ' ')) = 2 AND " +
         "size(filter(split(title_replaced, ' '), x -> length(x) >= 1 AND instr(tituloPrincipal_replaced, x) > 0)) >= 2) OR " +
         "(size(split(title_replaced, ' ')) = 3 AND " +
-        "size(filter(split(title_replaced, ' '), x -> length(x) > 4 AND instr(tituloPrincipal_replaced, x) > 0)) >= 2) OR " +
+        "size(filter(split(title_replaced, ' '), x -> length(x) > 3 AND instr(tituloPrincipal_replaced, x) > 0)) >= 2) OR " +
         "(size(split(title_replaced, ' ')) = 4 AND " +
         "size(filter(split(title_replaced, ' '), x -> length(x) > 3 AND instr(tituloPrincipal_replaced, x) > 0)) >= 3) OR " +
         "(size(split(title_replaced, ' ')) >= 5 AND " +
@@ -105,6 +106,9 @@ df_movies_refined = df_movies_refined.withColumn('nota_media', format_number(col
 # Apagar as colunas indesejadas
 df_movies_refined = df_movies_refined.drop('releaseDate', 'tituloPrincipal_replaced', 'anoLancamento', 'title_replaced','vote_average','vote_count','notaMedia','numeroVotos','tituloOriginal','genero')
 
+# Remover caracteres especiais que não sejam letras acentuadas na coluna "title"
+df_movies_refined = df_movies_refined.withColumn("title", regexp_replace(df_movies_refined["title"], "[^a-zA-ZÀ-ÿ, ]", ""))
+
 # Selecione apenas as colunas desejadas
 df_movies_refined = df_movies_refined.select('id','movie_id','genre_ids', 'title', 'tempoMinutos', 'release_date', 'original_language', 'popularity', 'nota_media', 'votos')
 
@@ -137,7 +141,7 @@ df_series_TMDB_Layer1 = df_series_TMDB_titulos_datas.join(
         "(size(split(name_replaced, ' ')) = 2 AND " +
         "size(filter(split(name_replaced, ' '), x -> length(x) >= 1 AND instr(title_replaced, x) > 0)) >= 2) OR " +
         "(size(split(name_replaced, ' ')) = 3 AND " +
-        "size(filter(split(name_replaced, ' '), x -> length(x) > 4 AND instr(title_replaced, x) > 0)) >= 2) OR " +
+        "size(filter(split(name_replaced, ' '), x -> length(x) > 3 AND instr(title_replaced, x) > 0)) >= 2) OR " +
         "(size(split(name_replaced, ' ')) = 4 AND " +
         "size(filter(split(name_replaced, ' '), x -> length(x) > 3 AND instr(title_replaced, x) > 0)) >= 3) OR " +
         "(size(split(name_replaced, ' ')) >= 5 AND " +
@@ -175,7 +179,7 @@ df_series_refined = df_series_TMDB_Layer1.join(
         "(size(split(name_replaced, ' ')) = 2 AND " +
         "size(filter(split(name_replaced, ' '), x -> length(x) >= 1 AND instr(tituloPrincipal_replaced, x) > 0)) >= 2) OR " +
         "(size(split(name_replaced, ' ')) = 3 AND " +
-        "size(filter(split(name_replaced, ' '), x -> length(x) > 4 AND instr(tituloPrincipal_replaced, x) > 0)) >= 2) OR " +
+        "size(filter(split(name_replaced, ' '), x -> length(x) > 3 AND instr(tituloPrincipal_replaced, x) > 0)) >= 2) OR " +
         "(size(split(name_replaced, ' ')) = 4 AND " +
         "size(filter(split(name_replaced, ' '), x -> length(x) > 3 AND instr(tituloPrincipal_replaced, x) > 0)) >= 3) OR " +
         "(size(split(name_replaced, ' ')) >= 5 AND " +
@@ -208,20 +212,20 @@ df_series_refined = df_series_refined.withColumn('nota_media', format_number(col
 # Apagar as colunas indesejadas
 df_series_refined = df_series_refined.drop('releaseDate', 'tituloPrincipal_replaced', 'releaseDate', 'name_replaced','vote_average','vote_count','notaMedia','numeroVotos','tituloPrincipal','anoLancamento')
 
+# Remover caracteres especiais que não sejam letras acentuadas na coluna "name"
+df_series_refined = df_series_refined.withColumn("name", regexp_replace(df_series_refined["name"], "[^a-zA-ZÀ-ÿ, ]", ""))
+
 # Selecione apenas as colunas linhas desejadas
 df_series_refined = df_series_refined.select('id','seriesId','genre_ids', 'name', 'tempoMinutos', 'first_air_date', 'anoTermino', 'original_language', 'popularity', 'nota_media', 'votos')
 df_series_refined = df_series_refined.distinct()
-
 
 # Cria DF Actors
 df_movies_actors = df_movies_IMDB_trusted.select("id", "personagem", "nomeArtista", "generoArtista", "anoNascimento", "anoFalecimento", "profissao", "titulosMaisConhecidos")
 df_series_actors = df_series_IMDB_trusted.select("id", "personagem", "nomeArtista", "generoArtista", "anoNascimento", "anoFalecimento", "profissao", "titulosMaisConhecidos")
 
-
 # Obter a lista de film_ids presentes na tabela de filmes selecionados
 filme_ids = df_movies_refined.select("movie_id")
 serie_ids = df_series_refined.select("seriesId")
-
 
 # Realizar o join entre os DataFrames
 df_movies_actors = df_movies_actors.join(filme_ids, df_movies_actors["id"] == filme_ids["movie_id"], "inner")
@@ -237,14 +241,37 @@ df_series_actors = df_series_actors.distinct()
 
 # Unir df Atores de filmes e series
 df_actors = df_movies_actors.unionAll(df_series_actors)
-df_actors = df_actors.withColumn("IdArtista", F.monotonically_increasing_id())  # Adicionar uma coluna de ID único para os artistas
+
+# Atualizar os dados da coluna com regex_replace pois dubladores atuam com mais de um pesonagem e os nomes estão unidos em camelCase
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "([a-z])([A-Z])", "$1 $2"))
+df_actors = df_actors.withColumn("nomeArtista", regexp_replace(df_actors["nomeArtista"], "([a-z])([A-Z])", "$1 $2"))
+
+# Remover palavras repetidas dentro de cada célula da coluna "personagem"
+df_actors = df_actors.withColumn("personagem", expr("regexp_replace(personagem, '\\b(\\w+)\\b\\s+\\1\\b', '$1')"))
+
+# Remover conteúdo entre parênteses da coluna "personagem"
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], r'\([^()]*\)', ''))
+
+# Substituir letras acentuadas por suas versões não acentuadas na coluna "personagem"
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "[áàâãä]", "a"))
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "[éèêë]", "e"))
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "[íìîï]", "i"))
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "[óòôõö]", "o"))
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "[úùûü]", "u"))
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "[ç]", "c"))
+
+# Remover a palavra "Son" do início do nome na coluna "personagem"
+df_actors = df_actors.withColumn("personagem", regexp_replace(df_actors["personagem"], "^Son ", ""))
+
+# Atribua IDs únicos para artistas com nomes repetidos
+window = Window.partitionBy("nomeArtista").orderBy("id")
+df_actors = df_actors.withColumn("IdArtista", dense_rank().over(window))
 
 # Atualizar o formato da coluna 'profissao'
 df_actors = df_actors.withColumn('profissao', split(regexp_replace(df_actors['profissao'], ',\\s*', ','), ','))
 
 # Atualizar o formato da coluna 'titulosMaisConhecidos'
 df_actors = df_actors.withColumn('titulosMaisConhecidos', split(regexp_replace(df_actors['titulosMaisConhecidos'], ',\\s*', ','), ','))
-
 
 df_movies_refined.createOrReplaceTempView("movies")
 df_series_refined.createOrReplaceTempView("series")

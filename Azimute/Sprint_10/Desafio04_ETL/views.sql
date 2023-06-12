@@ -44,6 +44,7 @@ FROM dash.actors_tb;
 CREATE OR REPLACE VIEW movies_series_combined_dim AS
 SELECT
   id,
+  movie_id AS Id_IMDB,
   genre_ids,
   title,
   CAST(tempoMinutos AS int) AS tempoMinutos,
@@ -58,6 +59,7 @@ FROM
 UNION ALL
 SELECT
   id,
+  seriesId AS Id_IMDB,
   genre_ids,
   name AS title,
   tempoMinutos,
@@ -69,3 +71,28 @@ SELECT
   'Série' AS tipo
 FROM
   dash.series_tb;
+
+
+CREATE OR REPLACE VIEW "movies_series_actors_dim" AS 
+SELECT
+  a.id actor_id
+, a.personagem
+, a.nomeArtista
+, a.generoArtista
+, a.anoNascimento
+, a.anoFalecimento
+, a.profissao
+, a.titulosMaisConhecidos
+, mscv.id_IMDB movie_series_id
+, mscv.genre_ids
+, mscv.title
+, mscv.tempoMinutos
+, mscv.dataLancamento
+, mscv.original_language
+, mscv.popularity
+, mscv.nota_media
+, mscv.votos
+, mscv.tipo
+FROM
+  (dash.actors_tb a
+RIGHT JOIN movies_series_combined_dim mscv ON (a.id = mscv.id_IMDB))
